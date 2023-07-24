@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://co3cutit43po3"]
+
+[ext_resource type="Script" path="res://scene/user_interface/main_menu.gd" id="1_qmu76"]
+[ext_resource type="LabelSettings" uid="uid://br6rk7r66c110" path="res://scene/theme/label/title_label_settings.tres" id="2_rbqny"]
+[ext_resource type="Theme" uid="uid://bf8buttc4ihom" path="res://scene/theme/button/menu_button_theme.tres" id="3_os3ot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttvhk"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qmu76")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.25098, 0.709804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "The Lost Key"
+label_settings = ExtResource("2_rbqny")
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxFlat_ttvhk")
+
+[node name="StartMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/StartMargin"]
+layout_mode = 2
+theme = ExtResource("3_os3ot")
+text = "Start"
+
+[node name="OptionsMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Options" type="Button" parent="CenterContainer/VBoxContainer/OptionsMargin"]
+layout_mode = 2
+theme = ExtResource("3_os3ot")
+text = "Options"
+
+[node name="QuitMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/QuitMargin"]
+layout_mode = 2
+theme = ExtResource("3_os3ot")
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartMargin/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsMargin/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitMargin/Quit" to="." method="_on_quit_pressed"]

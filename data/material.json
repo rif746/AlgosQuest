@@ -1,0 +1,46 @@
+{
+	"material": [
+		{
+			"id": 1,
+			"title": "Flowchart",
+			"details": "",
+			"puzzle": [
+				{
+					"id": "puzzle-1",
+					"question": "",
+					"answer": [
+						{
+							"text": "",
+							"is_true": false
+						},
+						{
+							"text": "",
+							"is_true": true
+						},
+					]
+				},
+			]
+		},
+		{
+			"id": 2,
+			"title": "Pseudocode",
+			"details": "",
+			"puzzle": [
+				{
+					"id": "puzzle-1",
+					"question": "",
+					"answer": [
+						{
+							"text": "",
+							"is_true": false
+						},
+						{
+							"text": "",
+							"is_true": true
+						},
+					]
+				},
+			]
+		},
+	]
+}
