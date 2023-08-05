@@ -2,45 +2,28 @@
 	"material": [
 		{
 			"id": 1,
-			"title": "Flowchart",
-			"details": "",
-			"puzzle": [
-				{
-					"id": "puzzle-1",
-					"question": "",
-					"answer": [
-						{
-							"text": "",
-							"is_true": false
-						},
-						{
-							"text": "",
-							"is_true": true
-						},
-					]
-				},
-			]
+			"title": "Material 1",
+			"description": "Material 1 Description",
 		},
 		{
 			"id": 2,
-			"title": "Pseudocode",
-			"details": "",
-			"puzzle": [
-				{
-					"id": "puzzle-1",
-					"question": "",
-					"answer": [
-						{
-							"text": "",
-							"is_true": false
-						},
-						{
-							"text": "",
-							"is_true": true
-						},
-					]
-				},
-			]
+			"title": "Material 2",
+			"description": "Material 2 Description",
+		},
+		{
+			"id": 3,
+			"title": "Material 3",
+			"description": "Material 3 Description",
+		},
+		{
+			"id": 4,
+			"title": "Material 4",
+			"description": "Material 4 Description",
+		},
+		{
+			"id": 5,
+			"title": "Material 5",
+			"description": "Material 5 Description",
 		},
 	]
 }

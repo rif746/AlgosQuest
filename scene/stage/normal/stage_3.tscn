@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpld7m3hi8ql7"]
+
+[ext_resource type="PackedScene" uid="uid://cquxqfak7i7o0" path="res://scene/user_interface/ingame/user_display.tscn" id="1_22e70"]
+
+[node name="stage_3" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 77.0
+offset_top = 64.0
+offset_right = 133.0
+offset_bottom = 90.0
+size_flags_horizontal = 0
+text = "Stage 3"
+
+[node name="HBoxContainer" parent="." instance=ExtResource("1_22e70")]
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 1267.0
+offset_bottom = 49.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 194.0
+offset_top = 2.0
+offset_right = 234.0
+offset_bottom = 28.0
+text = "Normal 3"

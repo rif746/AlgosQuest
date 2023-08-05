@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="The Lost Key"
-run/main_scene="res://scene/user_interface/main_menu.tscn"
+run/main_scene="res://scene/user_interface/menu/main_menu.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Settings="*res://global/settings.gd"
-FileSystem="*res://global/file_system.gd"
 SceneChanger="*res://scene/scene_changer.tscn"
+GlobalSgnal="*res://global/signal.gd"
 
 [display]
 

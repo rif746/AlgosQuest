@@ -6,24 +6,43 @@ enum Difficulty {
 	HARD
 }
 
-var difficulty = Difficulty
+const SETTINGS_PATH = "user://settings.json"
+
+var difficulty: Difficulty = Difficulty.EASY
 var bgm = 100
 var sfx = 100
+var userName = "Player"
+
+func _ready():
+	load_setting()
 
 func set_bgm(num: int):
 	bgm = num
-	
-func get_bgm():
-	return bgm
-	
+
 func set_sfx(num: int):
 	sfx = num
-	
-func get_sfx():
-	return sfx
-	
-func set_difficulty(difficult = Difficulty):
+
+func set_difficulty(difficult: Difficulty):
 	difficulty = difficult
 
-func get_difficulty():
-	return difficulty
+func set_player_name(playerName: String):
+	userName = playerName
+
+func load_setting():
+	if(FileAccess.file_exists(SETTINGS_PATH)):
+		var save_data = FileAccess.get_file_as_string(SETTINGS_PATH)
+		save_data = JSON.parse_string(save_data)
+		bgm = save_data.bgm
+		sfx = save_data.sfx
+		userName = save_data.userName
+		difficulty = save_data.difficulty
+
+func save_setting():
+	var save_data = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	var data = {
+		"bgm": bgm,
+		"sfx": sfx,
+		"userName": userName,
+		"difficulty": difficulty,
+	}
+	save_data.store_string(JSON.stringify(data))
