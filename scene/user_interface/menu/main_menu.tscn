@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://co38qoqjx2qk6"]
+[gd_scene load_steps=5 format=3 uid="uid://xvmwo2vc3dk4"]
 
+[ext_resource type="Theme" uid="uid://dbpcf5s8c2231" path="res://scene/main_theme.tres" id="1_0ok75"]
 [ext_resource type="Script" path="res://scene/user_interface/menu/main_menu.gd" id="1_qmu76"]
-[ext_resource type="LabelSettings" uid="uid://br6rk7r66c110" path="res://scene/theme/label/title_label_settings.tres" id="2_rbqny"]
-[ext_resource type="Theme" uid="uid://bf8buttc4ihom" path="res://scene/theme/button/menu_button_theme.tres" id="3_os3ot"]
+[ext_resource type="PackedScene" uid="uid://bg7visaqhj1rb" path="res://scene/user_interface/entity/button/button_with_sfx.tscn" id="4_57kuq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttvhk"]
+[sub_resource type="LabelSettings" id="LabelSettings_pvs4u"]
+font_size = 48
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,17 +14,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0ok75")
 script = ExtResource("1_qmu76")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.203922, 0.25098, 0.709804, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -35,53 +27,28 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
-[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "The Lost Key"
-label_settings = ExtResource("2_rbqny")
+label_settings = SubResource("LabelSettings_pvs4u")
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+[node name="Start" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_57kuq")]
 layout_mode = 2
-theme_override_constants/separation = 25
-theme_override_styles/separator = SubResource("StyleBoxFlat_ttvhk")
-
-[node name="StartMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/StartMargin"]
-layout_mode = 2
-theme = ExtResource("3_os3ot")
+theme_override_font_sizes/font_size = 24
 text = "Start"
 
-[node name="OptionsMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Options" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_57kuq")]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Options" type="Button" parent="CenterContainer/VBoxContainer/OptionsMargin"]
-layout_mode = 2
-theme = ExtResource("3_os3ot")
+theme_override_font_sizes/font_size = 24
 text = "Options"
 
-[node name="QuitMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_57kuq")]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/QuitMargin"]
-layout_mode = 2
-theme = ExtResource("3_os3ot")
+theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartMargin/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsMargin/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitMargin/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

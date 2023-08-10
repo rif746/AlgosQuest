@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4w20h8kw8a0i"]
+[gd_scene load_steps=2 format=3 uid="uid://ow5il2s27e6f"]
 
 [ext_resource type="Script" path="res://scene/stage/easy/stage_1.gd" id="1_k7ul1"]
-[ext_resource type="PackedScene" uid="uid://cquxqfak7i7o0" path="res://scene/user_interface/ingame/user_display.tscn" id="2_ivh0p"]
 
 [node name="stage_1" type="Node2D"]
 script = ExtResource("1_k7ul1")
@@ -13,12 +12,7 @@ offset_right = 612.0
 offset_bottom = 37.0
 size_flags_horizontal = 0
 text = "Stage 1"
-
-[node name="HBoxContainer" parent="." instance=ExtResource("2_ivh0p")]
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 1267.0
-offset_bottom = 49.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 194.0
@@ -26,3 +20,4 @@ offset_top = 2.0
 offset_right = 234.0
 offset_bottom = 28.0
 text = "Hard 1"
+metadata/_edit_use_anchors_ = true

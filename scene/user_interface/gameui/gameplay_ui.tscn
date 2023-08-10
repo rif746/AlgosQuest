@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://koaem4spi88q"]
+
+[ext_resource type="PackedScene" uid="uid://b877m8qt14opv" path="res://scene/user_interface/entity/popup/game_over.tscn" id="1_a3ijd"]
+[ext_resource type="Script" path="res://scene/user_interface/gameui/gameplay_ui.gd" id="1_okw1e"]
+[ext_resource type="PackedScene" uid="uid://dmmbr2gqrlq7g" path="res://scene/user_interface/gameui/game_hud.tscn" id="2_7bdyq"]
+
+[node name="GamePlayUI" type="Node2D"]
+script = ExtResource("1_okw1e")
+
+[node name="GameHUD" parent="." instance=ExtResource("2_7bdyq")]
+layer = 4
+
+[node name="GameOverUI" parent="." instance=ExtResource("1_a3ijd")]
+layer = 5
+
+[connection signal="game_over" from="GameHUD" to="." method="_on_game_hud_game_over"]
+[connection signal="restart_game" from="GameOverUI" to="." method="_on_game_over_ui_restart_game"]

@@ -1,18 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpld7m3hi8ql7"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cquxqfak7i7o0" path="res://scene/user_interface/ingame/user_display.tscn" id="1_22e70"]
+[ext_resource type="Script" path="res://scene/stage/easy/stage_3.gd" id="1_1nen6"]
+[ext_resource type="PackedScene" uid="uid://oxtfrtm1jlcb" path="res://scene/user_interface/gameui/game_hud.tscn" id="1_22e70"]
 
 [node name="stage_3" type="Node2D"]
+script = ExtResource("1_1nen6")
 
-[node name="HBoxContainer" parent="." instance=ExtResource("1_22e70")]
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 1267.0
-offset_bottom = 49.0
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 194.0
-offset_top = 2.0
-offset_right = 234.0
-offset_bottom = 28.0
-text = "Easy 3"
+[node name="ingame_ui" parent="." instance=ExtResource("1_22e70")]

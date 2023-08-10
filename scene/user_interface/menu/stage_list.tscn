@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://11vtsecu0um6"]
+[gd_scene load_steps=4 format=3 uid="uid://cepjl87wkbpin"]
 
 [ext_resource type="Script" path="res://scene/user_interface/menu/stage_list.gd" id="1_w1am0"]
-[ext_resource type="Theme" uid="uid://bf8buttc4ihom" path="res://scene/theme/button/menu_button_theme.tres" id="2_8nl0j"]
+[ext_resource type="Theme" uid="uid://dbpcf5s8c2231" path="res://scene/main_theme.tres" id="1_woxcl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cb5od"]
 font_size = 48
@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_woxcl")
 script = ExtResource("1_w1am0")
 
 [node name="Main" type="VBoxContainer" parent="."]
@@ -36,13 +37,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Main/Top/TopContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Stage List"
+text = "Select Level"
 label_settings = SubResource("LabelSettings_cb5od")
 uppercase = true
 
 [node name="Back" type="Button" parent="Main/Top/TopContainer"]
 layout_mode = 2
-theme = ExtResource("2_8nl0j")
+size_flags_horizontal = 8
 text = "BACK"
 
 [node name="Bottom" type="MarginContainer" parent="Main"]
@@ -54,9 +55,5 @@ theme_override_constants/margin_bottom = 15
 
 [node name="BottomFlowContainer" type="HFlowContainer" parent="Main/Bottom"]
 layout_mode = 2
-
-[node name="Stage" type="Button" parent="Main/Bottom/BottomFlowContainer"]
-layout_mode = 2
-text = "X"
 
 [connection signal="pressed" from="Main/Top/TopContainer/Back" to="." method="_on_back_pressed"]

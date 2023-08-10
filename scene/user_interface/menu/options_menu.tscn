@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvdyo8qsa12xy"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scene/user_interface/menu/options_menu.gd" id="1_fwdu4"]
-[ext_resource type="Theme" uid="uid://bf8buttc4ihom" path="res://scene/theme/button/menu_button_theme.tres" id="2_cn2p7"]
+[ext_resource type="Theme" uid="uid://dbpcf5s8c2231" path="res://scene/main_theme.tres" id="2_tqg5k"]
+[ext_resource type="PackedScene" uid="uid://dm8q45krrxkss" path="res://scene/user_interface/entity/slider/slider_with_center_text.tscn" id="3_3evqf"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8n4ie"]
-font_size = 48
+[sub_resource type="LabelSettings" id="LabelSettings_w0cx1"]
+font_size = 32
+outline_size = 3
 
-[node name="VBoxContainer" type="VBoxContainer"]
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,96 +17,93 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fwdu4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tqg5k")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+tooltip_text = "Options"
+theme_override_constants/separation = 15
+alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_w0cx1")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Options"
-label_settings = SubResource("LabelSettings_8n4ie")
-horizontal_alignment = 1
-uppercase = true
+text = "Player Name"
 
-[node name="Back" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="PlayerName" type="LineEdit" parent="CenterContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_cn2p7")
-text = "BACK"
+size_flags_horizontal = 3
+placeholder_text = "Player Name"
+context_menu_enabled = false
+caret_blink = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
-layout_mode = 2
-
-[node name="BGMVolumeContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-
-[node name="BGMLabel" type="Label" parent="MarginContainer2/VBoxContainer/BGMVolumeContainer"]
+[node name="BGMLabel" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "BGM"
 
-[node name="SliderSplit" type="HSplitContainer" parent="MarginContainer2/VBoxContainer/BGMVolumeContainer"]
+[node name="BGMSlider" parent="CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("3_3evqf")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
 
-[node name="BGMSlider" type="HSlider" parent="MarginContainer2/VBoxContainer/BGMVolumeContainer/SliderSplit"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="BGMLabel" type="Label" parent="MarginContainer2/VBoxContainer/BGMVolumeContainer/SliderSplit"]
-clip_contents = true
-layout_mode = 2
-text = "100%"
-
-[node name="SFXVolumeContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-
-[node name="SFXLabel" type="Label" parent="MarginContainer2/VBoxContainer/SFXVolumeContainer"]
+[node name="SFXLabel" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SFX"
 
-[node name="SliderSplit" type="HSplitContainer" parent="MarginContainer2/VBoxContainer/SFXVolumeContainer"]
+[node name="SFXSlider" parent="CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("3_3evqf")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
 
-[node name="SFXSlider" type="HSlider" parent="MarginContainer2/VBoxContainer/SFXVolumeContainer/SliderSplit"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="SFXLabel" type="Label" parent="MarginContainer2/VBoxContainer/SFXVolumeContainer/SliderSplit"]
-clip_contents = true
-layout_mode = 2
-text = "100%"
-
-[node name="DifficultyContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-
-[node name="DifficultyLabel" type="Label" parent="MarginContainer2/VBoxContainer/DifficultyContainer"]
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Difficulty"
 
-[node name="DifficultyOption" type="OptionButton" parent="MarginContainer2/VBoxContainer/DifficultyContainer"]
+[node name="DifficultyOption" type="OptionButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "EASY"
+popup/item_0/id = 0
+popup/item_1/text = "NORMAL"
+popup/item_1/id = 1
+popup/item_2/text = "HARD"
+popup/item_2/id = 2
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="value_changed" from="MarginContainer2/VBoxContainer/BGMVolumeContainer/SliderSplit/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer2/VBoxContainer/SFXVolumeContainer/SliderSplit/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="item_selected" from="MarginContainer2/VBoxContainer/DifficultyContainer/DifficultyOption" to="." method="_on_difficulty_option_item_selected"]
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/GridContainer/PlayerName" to="." method="_on_text_edit_text_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/GridContainer/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/GridContainer/DifficultyOption" to="." method="_on_difficulty_option_item_selected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
