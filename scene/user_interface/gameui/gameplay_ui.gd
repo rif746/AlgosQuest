@@ -3,6 +3,7 @@ class_name GamePlayUI
 
 @onready var game_hud = $GameHUD
 @onready var game_over_ui = $GameOverUI
+@onready var pause_menu = $PauseMenu
 
 const STAGE = [
 	"res://scene/stage/{diff}/stage_1.tscn",
@@ -37,3 +38,6 @@ func _on_game_over_ui_restart_game():
 
 func _on_game_hud_game_over():
 	game_over_ui.show()
+
+func _on_game_hud_paused():
+	pause_menu.show()

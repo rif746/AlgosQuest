@@ -1,18 +1,13 @@
 extends Button
 class_name StageButton
 
-var stage_id: int:
+var stage: Dictionary:
 	set(value):
-		if !StageLoader.stage_unlocked(value):
+		if !StageLoader.stage_unlocked(value.id):
 			disabled = true
-		else:
-			is_unlocked = true
-		stage_id = value
+		if StageLoader.stage_cleared(value.id):
+			is_cleared = true
+		stage = value
 		StageLoader.stage_time = 300
 
-var is_unlocked: bool = false
-
-func _on_pressed():
-	var gameplay = preload("res://scene/user_interface/gameui/gameplay_ui.tscn")
-	SceneChanger.change_scene(gameplay)
-
+var is_cleared: bool = false

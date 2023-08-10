@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bj03ylwtcfbdq"]
+
+[ext_resource type="FontFile" uid="uid://kubyi8ml02or" path="res://assets/fonts/joystix monospace.otf" id="1_ysb1s"]
+
+[resource]
+font = ExtResource("1_ysb1s")
+font_size = 32

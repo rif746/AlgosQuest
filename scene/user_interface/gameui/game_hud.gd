@@ -20,6 +20,7 @@ func create_timer(time):
 
 func _on_pause_button_pressed():
 	paused.emit()
+	get_tree().paused = true
 
 func _on_timer_timeout():
 	timer.stop()
