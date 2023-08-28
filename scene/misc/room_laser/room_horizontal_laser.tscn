@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfi2mcajaqsmv"]
+
+[ext_resource type="Texture2D" uid="uid://bmvc6urt4lxgh" path="res://assets/sprites/misc/lasers_spritesheet.png" id="1_roxtb"]
+[ext_resource type="Script" path="res://scene/misc/room_laser/room_horizontal_laser.gd" id="2_ewnsh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogqoh"]
+atlas = ExtResource("1_roxtb")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtp2e"]
+atlas = ExtResource("1_roxtb")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pd6c"]
+atlas = ExtResource("1_roxtb")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_salyf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogqoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtp2e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pd6c")
+}],
+"loop": true,
+"name": &"laser_off",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d18a"]
+size = Vector2(16.2667, 16)
+
+[node name="Sprite" type="AnimatedSprite2D"]
+position = Vector2(3, 0)
+scale = Vector2(1.375, 1)
+sprite_frames = SubResource("SpriteFrames_salyf")
+animation = &"laser_off"
+autoplay = "default"
+script = ExtResource("2_ewnsh")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0.133332, 0)
+shape = SubResource("RectangleShape2D_2d18a")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]

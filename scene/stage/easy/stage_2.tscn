@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3]
-
-[ext_resource type="Script" path="res://scene/stage/easy/stage_2.gd" id="1_3m8mi"]
-[ext_resource type="PackedScene" uid="uid://oxtfrtm1jlcb" path="res://scene/user_interface/gameui/game_hud.tscn" id="1_5h78q"]
-
-[node name="stage_2" type="Node2D"]
-script = ExtResource("1_3m8mi")
-
-[node name="ingame_ui" parent="." instance=ExtResource("1_5h78q")]

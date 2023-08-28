@@ -30,5 +30,5 @@ func _on_difficulty_option_item_selected(index):
 	Settings.set_difficulty(index)
 
 
-func _on_text_edit_text_changed():
-	Settings.set_player_name(player_name.text)
+func _on_text_edit_text_changed(text):
+	Settings.set_player_name(text)

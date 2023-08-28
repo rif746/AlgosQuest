@@ -1,0 +1,77 @@
+{
+	"stage": [
+		{
+			"id": 1,
+			"title": "Tipe Data",
+			"instruction": "Selesaikan Stage ini dengan mengumpulkan :x kunci yang tersegel. \nuntuk melepaskan segel, pemain dapat menjawab pertanyaan yang tersedia pada setiap segelnya.",
+			"mission": [
+				{
+					"mission_id": 1,
+					"question": "Dalam pemrograman, tedapat sebuah tipe data yang hanya dapat menampung bilangan real. tipe data apakah itu?",
+					"answer": [
+						{
+							"text": "Number",
+							"is_true": false
+						},
+						{
+							"text": "Numeric",
+							"is_true": false
+						},
+						{
+							"text": "Integer",
+							"is_true": true
+						},
+						{
+							"text": "Float",
+							"is_true": false
+						},
+					]
+				},
+				{
+					"mission_id": 2,
+					"question": "Tipe data yang dapat menyimpan sebuah kalimat disebut dengan ...",
+					"answer": [
+						{
+							"text": "String",
+							"is_true": true
+						},
+						{
+							"text": "Char",
+							"is_true": false
+						},
+						{
+							"text": "Teks",
+							"is_true": true
+						},
+						{
+							"text": "Integer",
+							"is_true": false
+						},
+					]
+				},
+				{
+					"mission_id": 3,
+					"question": "Tipe data kosong disebut ...",
+					"answer": [
+						{
+							"text": "Null",
+							"is_true": true
+						},
+						{
+							"text": "0",
+							"is_true": false
+						},
+						{
+							"text": "\" \"",
+							"is_true": false
+						},
+						{
+							"text": "-",
+							"is_true": false
+						},
+					]
+				},
+			]
+		},
+	],
+}

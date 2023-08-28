@@ -4,26 +4,181 @@
 			"id": 1,
 			"title": "Material 1",
 			"description": "Material 1 Description",
+			"sample": {
+				"category": "data_types",
+				"types": 0,
+			},
+			"mission": [
+				{
+					"id": 1,
+					"title": "Mission 1",
+					"content": "Mission 1 Detail"
+				},
+				{
+					"id": 2,
+					"title": "Mission 2",
+					"content": "Mission 2 Detail"
+				},
+				{
+					"id": 3,
+					"title": "Mission 3",
+					"content": "Mission 3 Detail"
+				},
+				{
+					"id": 4,
+					"title": "Mission 4",
+					"content": "Mission 4 Detail"
+				},
+				{
+					"id": 5,
+					"title": "Mission 5",
+					"content": "Mission 5 Detail"
+				},
+			],
 		},
 		{
 			"id": 2,
 			"title": "Material 2",
 			"description": "Material 2 Description",
+			"sample": {
+				"category": "data_types",
+				"types": 0,
+			},
+			"mission": [
+				{
+					"id": 1,
+					"title": "Mission 1",
+					"content": "Mission 1 Detail"
+				},
+				{
+					"id": 2,
+					"title": "Mission 2",
+					"content": "Mission 2 Detail"
+				},
+				{
+					"id": 3,
+					"title": "Mission 3",
+					"content": "Mission 3 Detail"
+				},
+				{
+					"id": 4,
+					"title": "Mission 4",
+					"content": "Mission 4 Detail"
+				},
+				{
+					"id": 5,
+					"title": "Mission 5",
+					"content": "Mission 5 Detail"
+				},
+			],
 		},
 		{
 			"id": 3,
 			"title": "Material 3",
 			"description": "Material 3 Description",
+			"sample": {
+				"category": "data_types",
+				"types": 0,
+			},
+			"mission": [
+				{
+					"id": 1,
+					"title": "Mission 1",
+					"content": "Mission 1 Detail"
+				},
+				{
+					"id": 2,
+					"title": "Mission 2",
+					"content": "Mission 2 Detail"
+				},
+				{
+					"id": 3,
+					"title": "Mission 3",
+					"content": "Mission 3 Detail"
+				},
+				{
+					"id": 4,
+					"title": "Mission 4",
+					"content": "Mission 4 Detail"
+				},
+				{
+					"id": 5,
+					"title": "Mission 5",
+					"content": "Mission 5 Detail"
+				},
+			],
 		},
 		{
 			"id": 4,
 			"title": "Material 4",
 			"description": "Material 4 Description",
+			"sample": {
+				"category": "data_types",
+				"types": 0,
+			},
+			"mission": [
+				{
+					"id": 1,
+					"title": "Mission 1",
+					"content": "Mission 1 Detail"
+				},
+				{
+					"id": 2,
+					"title": "Mission 2",
+					"content": "Mission 2 Detail"
+				},
+				{
+					"id": 3,
+					"title": "Mission 3",
+					"content": "Mission 3 Detail"
+				},
+				{
+					"id": 4,
+					"title": "Mission 4",
+					"content": "Mission 4 Detail"
+				},
+				{
+					"id": 5,
+					"title": "Mission 5",
+					"content": "Mission 5 Detail"
+				},
+			],
 		},
 		{
 			"id": 5,
 			"title": "Material 5",
 			"description": "Material 5 Description",
+			"sample": {
+				"category": "data_types",
+				"types": 0,
+			},
+			"mission": [
+				{
+					"id": 1,
+					"title": "Mission 1",
+					"content": "Mission 1 Detail"
+				},
+				{
+					"id": 2,
+					"title": "Mission 2",
+					"content": "Mission 2 Detail"
+				},
+				{
+					"id": 3,
+					"title": "Mission 3",
+					"content": "Mission 3 Detail"
+				},
+				{
+					"id": 4,
+					"title": "Mission 4",
+					"content": "Mission 4 Detail"
+				},
+				{
+					"id": 5,
+					"title": "Mission 5",
+					"content": "Mission 5 Detail"
+				},
+			],
 		},
 	]
 }

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg510xgkwfd7d"]
+
+[ext_resource type="Script" path="res://scene/misc/music/sfx_control.gd" id="1_1uu11"]
+
+[node name="sfx_control" type="Node"]
+script = ExtResource("1_1uu11")

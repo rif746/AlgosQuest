@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://0kwqbokrnnkd"]
+
+[ext_resource type="Script" path="res://scene/entity/key_objects/computer/computer.gd" id="1_uxa8k"]
+[ext_resource type="Script" path="res://scene/misc/detector/item_area.gd" id="2_gvdlx"]
+[ext_resource type="Texture2D" uid="uid://c7l077p6wqp1o" path="res://assets/sprites/key_objects/computer_spritesheet.png" id="2_xdso2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7djb"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aemah"]
+atlas = ExtResource("2_xdso2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbxtv"]
+atlas = ExtResource("2_xdso2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3odu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aemah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbxtv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xwwk"]
+
+[node name="computer" type="StaticBody2D"]
+script = ExtResource("1_uxa8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_k7djb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3odu")
+
+[node name="ItemArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("2_gvdlx")
+window_property = "res://scene/user_interface/entity/window/popup_window/popup_window.tscn"
+text_label = "Computer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemArea"]
+shape = SubResource("RectangleShape2D_2xwwk")
+
+[connection signal="area_entered" from="ItemArea" to="ItemArea" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="ItemArea" to="ItemArea" method="_on_area_exited" flags=18]
