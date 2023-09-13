@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd0puybf4ybmx"]
+
+[ext_resource type="Script" path="res://entity/object/computer/computer.gd" id="1_pdswj"]
+[ext_resource type="Texture2D" uid="uid://b64u6r0lsjvek" path="res://assets/sprites/computer.png" id="2_poxi4"]
+[ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/learning_panel/learning_panel.tscn" id="3_cwc6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2ji"]
+size = Vector2(19, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70sj8"]
+atlas = ExtResource("2_poxi4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upsib"]
+atlas = ExtResource("2_poxi4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpq1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70sj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upsib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="computer" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_pdswj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_mo2ji")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wpq1b")
+autoplay = "default"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="LearningPanel" parent="CanvasLayer" instance=ExtResource("3_cwc6k")]
+visible = false
+
+[connection signal="hidden" from="CanvasLayer/LearningPanel" to="." method="_on_learning_panel_hidden"]

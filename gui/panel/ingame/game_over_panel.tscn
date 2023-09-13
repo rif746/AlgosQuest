@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1auf0eh7bx3d"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_h8w04"]
+[ext_resource type="Script" path="res://gui/panel/ingame/game_panel.gd" id="2_v8pnt"]
+[ext_resource type="LabelSettings" uid="uid://cxeym524iwyrf" path="res://assets/resource/theme/label_settings/title_medium.tres" id="3_atyje"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="4_tr1y8"]
+
+[node name="GameOverPanel" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h8w04")
+script = ExtResource("2_v8pnt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 0.615686)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -148.0
+offset_right = 190.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = ExtResource("3_atyje")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 5
+
+[node name="RetryButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "Retry"
+
+[node name="BackToMenuButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "Back to Stage Menu"
+
+[node name="sfx_control" parent="." instance=ExtResource("4_tr1y8")]
+root_node = NodePath("../Panel")
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

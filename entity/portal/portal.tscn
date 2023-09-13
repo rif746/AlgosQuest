@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://hiog0h4ex0lb"]
+
+[ext_resource type="Script" path="res://entity/portal/portal.gd" id="1_ceo6k"]
+[ext_resource type="Texture2D" uid="uid://byy3xh6qbom26" path="res://assets/sprites/portal.png" id="2_bq8pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a02ci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egty0"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja4qm"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx2lj"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqhri"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by58l"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg7yl"]
+atlas = ExtResource("2_bq8pl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2tky8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egty0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja4qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx2lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqhri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by58l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg7yl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Portal" type="StaticBody2D"]
+script = ExtResource("1_ceo6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a02ci")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_2tky8")
+autoplay = "default"
+frame = 3
+frame_progress = 0.0840679

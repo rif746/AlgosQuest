@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://caxfw4ii06al1"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_ywnjf"]
+[ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="2_5k3lv"]
+[ext_resource type="Script" path="res://gui/panel/game_choice_panel/game_choice_panel.gd" id="2_yt5d3"]
+[ext_resource type="LabelSettings" uid="uid://r6qglaie1pk0" path="res://assets/resource/theme/label_settings/content_large.tres" id="3_cohno"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="4_x5u4m"]
+
+[node name="GameChoicePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ywnjf")
+script = ExtResource("2_yt5d3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 0.615686)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -105.0
+offset_right = 215.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Selected Stage"
+label_settings = ExtResource("2_5k3lv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaterialLabel" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "???"
+label_settings = ExtResource("3_cohno")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Play"
+
+[node name="ReadButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "Read"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 421.0
+offset_top = -5.0
+offset_right = 478.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 24
+text = "x"
+
+[node name="sfx_control" parent="." instance=ExtResource("4_x5u4m")]
+root_node = NodePath("../Panel")
+
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ReadButton" to="." method="_on_read_button_pressed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

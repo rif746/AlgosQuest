@@ -1,9 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://drx3vm8lnloeu"]
+[gd_scene load_steps=2 format=3 uid="uid://cbbkjpg1pke8k"]
 
 [ext_resource type="AudioStream" uid="uid://qjqqro64s4kb" path="res://assets/audio/bgm/main_menu_bgm.mp3" id="1_wsiwj"]
 
 [node name="BGM" type="AudioStreamPlayer"]
 process_mode = 3
 stream = ExtResource("1_wsiwj")
-autoplay = true
 bus = &"BGM"

@@ -6,16 +6,23 @@ enum Difficulty {
 	HARD
 }
 
-const SETTINGS_PATH = "user://settings.dat"
 const DIFFICULTY_STRING = [
 	"easy",
 	"normal",
 	"hard",
 ]
 
+# settings file path
+const SETTINGS_PATH = "user://settings.dat"
+
+# game difficulty (default: EASY)
 var difficulty: Difficulty = Difficulty.EASY
+
+# volume
 var bgm = 100
 var sfx = 100
+
+# player name
 var userName = "Player"
 
 func _ready():
@@ -37,9 +44,13 @@ func set_difficulty(difficult: Difficulty):
 func set_player_name(playerName: String):
 	userName = playerName
 
+
+# get current difficulty string
 func get_current_difficulty():
 	return DIFFICULTY_STRING[difficulty]
 
+
+# get next difficulty string
 func get_next_difficulty():
 	if (difficulty + 1) < DIFFICULTY_STRING.size():
 		return DIFFICULTY_STRING[difficulty + 1]

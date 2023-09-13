@@ -1,0 +1,204 @@
+[gd_scene load_steps=15 format=3 uid="uid://cvjyq06iqdqso"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_f423e"]
+[ext_resource type="LabelSettings" uid="uid://c5cu2jfhxu476" path="res://assets/resource/theme/label_settings/content_small.tres" id="2_d3yd1"]
+[ext_resource type="Script" path="res://gui/game/hud.gd" id="2_h583k"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_4lra4"]
+[ext_resource type="PackedScene" uid="uid://bm0r2yd52g2cl" path="res://gui/panel/ingame/pause_panel.tscn" id="5_2vh43"]
+[ext_resource type="Texture2D" uid="uid://d1yaj44wj46xy" path="res://assets/sprites/heart.png" id="5_r1mb0"]
+[ext_resource type="PackedScene" uid="uid://dos7lh1mveb3q" path="res://gui/game/virtual_controller.tscn" id="6_ewse6"]
+[ext_resource type="PackedScene" uid="uid://cjtqpvltajqhc" path="res://gui/panel/ingame/game_clear_panel.tscn" id="6_jogip"]
+[ext_resource type="PackedScene" uid="uid://c1auf0eh7bx3d" path="res://gui/panel/ingame/game_over_panel.tscn" id="7_l7rfu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqtop"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.32549, 0.403922, 0.588235, 1)
+border_width_bottom = 8
+border_color = Color(0.227451, 0.290196, 0.439216, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msi0d"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.4, 0.482353, 0.678431, 1)
+border_width_bottom = 8
+border_color = Color(0.227451, 0.290196, 0.439216, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwwq5"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.294118, 0.368627, 0.541176, 1)
+border_width_bottom = 8
+border_color = Color(0.227451, 0.290196, 0.439216, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 3
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j01uh"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.168627, 0.219608, 0.341176, 1)
+border_width_bottom = 8
+border_color = Color(0.203922, 0.262745, 0.4, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvgf4"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.352941, 0.435294, 0.627451, 1)
+border_width_bottom = 8
+border_color = Color(0.227451, 0.290196, 0.439216, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_h583k")
+metadata/_edit_use_anchors_ = true
+
+[node name="sfx_control" parent="." instance=ExtResource("3_4lra4")]
+root_node = NodePath("../HUDCanvas/HUD")
+
+[node name="StageTimer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="HUDCanvas" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="HUDCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_f423e")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDCanvas/HUD"]
+visibility_layer = 9
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUDCanvas/HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerNameLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player"
+label_settings = ExtResource("2_d3yd1")
+
+[node name="LifeTexture" type="TextureRect" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+texture = ExtResource("5_r1mb0")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestProgressCount" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "Found 0 of 0 Object"
+label_settings = ExtResource("2_d3yd1")
+
+[node name="TimerLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "00:00"
+label_settings = ExtResource("2_d3yd1")
+
+[node name="PauseButton" type="Button" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqtop")
+theme_override_styles/hover = SubResource("StyleBoxFlat_msi0d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wwwq5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_j01uh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pvgf4")
+text = "||"
+
+[node name="VirtualController" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer" instance=ExtResource("6_ewse6")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InteractButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController" index="1"]
+visible = false
+position = Vector2(549, 159)
+
+[node name="PauseUI" parent="HUDCanvas" instance=ExtResource("5_2vh43")]
+visible = false
+
+[node name="GameClearUI" parent="HUDCanvas" instance=ExtResource("6_jogip")]
+visible = false
+
+[node name="GameOverUI" parent="HUDCanvas" instance=ExtResource("7_l7rfu")]
+visible = false
+
+[connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
+[connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+
+[editable path="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController"]

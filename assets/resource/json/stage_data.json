@@ -1,0 +1,60 @@
+{
+  "stage": [
+    {
+      "id": 1,
+      "title": "Variabel",
+      "content": "",
+      "is_tutorial": true,
+      "mission": []
+    },
+    {
+      "id": 2,
+      "title": "Tipe Data",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 3,
+      "title": "Percabangan",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 4,
+      "title": "Perulangan",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 5,
+      "title": "Bagan Alir",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 6,
+      "title": "Pseudocode",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 7,
+      "title": "Array",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    },
+    {
+      "id": 8,
+      "title": "Sorting",
+      "content": "",
+      "is_tutorial": false,
+      "mission": []
+    }
+  ]
+}

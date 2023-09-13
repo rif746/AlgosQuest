@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn4dhx2mhud5"]
+
+[ext_resource type="Script" path="res://entity/door/door.gd" id="1_syivg"]
+[ext_resource type="Texture2D" uid="uid://35mpmlqma8vo" path="res://assets/sprites/lasers.png" id="2_i0anr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s05wj"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aair4"]
+atlas = ExtResource("2_i0anr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyofy"]
+atlas = ExtResource("2_i0anr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00nf6"]
+atlas = ExtResource("2_i0anr")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vs83r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aair4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyofy")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00nf6")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_syivg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s05wj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vs83r")
+animation = &"closed"
+autoplay = "closed"
+frame_progress = 0.432867

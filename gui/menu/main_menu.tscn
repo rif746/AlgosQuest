@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://den0e6u2x6kxs"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_xe156"]
+[ext_resource type="Script" path="res://gui/menu/main_menu.gd" id="2_xlw62"]
+[ext_resource type="StyleBox" uid="uid://bdy2y6crmor5f" path="res://assets/resource/theme/stylebox/transparent.tres" id="3_vmtnw"]
+[ext_resource type="LabelSettings" uid="uid://copo5fl0caijp" path="res://assets/resource/theme/label_settings/title_large.tres" id="4_0yypb"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="5_clfkx"]
+[ext_resource type="PackedScene" uid="uid://doxjpugincw3m" path="res://gui/panel/about_panel/about_panel.tscn" id="6_jtf5q"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xe156")
+script = ExtResource("2_xlw62")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.297222
+anchor_top = 0.13
+anchor_right = 0.702778
+anchor_bottom = 0.87
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_vmtnw")
+
+[node name="AboutButton" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 432.0
+offset_top = 281.0
+offset_right = 489.0
+offset_bottom = 343.0
+theme_override_font_sizes/font_size = 24
+text = "i"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "The Lost Key"
+label_settings = ExtResource("4_0yypb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="PlayButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Start"
+
+[node name="OptionButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Option"
+
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Exit"
+
+[node name="sfx_control" parent="." instance=ExtResource("5_clfkx")]
+root_node = NodePath("../Panel")
+
+[node name="AboutPanel" parent="." instance=ExtResource("6_jtf5q")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

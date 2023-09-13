@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bomrtfw7c66ex"]
+
+[ext_resource type="Script" path="res://extra/spawner/path_spawner/path_spawner.gd" id="1_e43j2"]
+
+[node name="PathSpawner" type="Path2D"]
+script = ExtResource("1_e43j2")
+
+[node name="PathFollow" type="PathFollow2D" parent="."]

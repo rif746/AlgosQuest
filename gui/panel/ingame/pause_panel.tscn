@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm0r2yd52g2cl"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_626yn"]
+[ext_resource type="Script" path="res://gui/panel/ingame/game_panel.gd" id="2_ccjst"]
+[ext_resource type="LabelSettings" uid="uid://cxeym524iwyrf" path="res://assets/resource/theme/label_settings/title_medium.tres" id="3_lkmqx"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="4_a323u"]
+
+[node name="PausePanel" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_626yn")
+script = ExtResource("2_ccjst")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 0.615686)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -137.0
+offset_right = 157.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = ExtResource("3_lkmqx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 5
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "Resume Game"
+
+[node name="BackToMenuButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+text = "Back to Stage Menu"
+
+[node name="sfx_control" parent="." instance=ExtResource("4_a323u")]
+root_node = NodePath("../Panel")
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

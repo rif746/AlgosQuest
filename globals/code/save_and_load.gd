@@ -1,10 +1,16 @@
 extends Node
 
+# save file path
 const SAVE_PATH = "user://cleared_progress.dat"
+
+
+# user ingame progress
 var progress: Dictionary
-	
+
+
 func _ready():
-	progress = _load_state()
+	progress = load_save_data()
+
 
 # save data when stage cleared
 func stage_clear(stage_id):
@@ -24,7 +30,7 @@ func stage_clear(stage_id):
 	save_data.store_var(data)
 
 # load saved data from binary file
-func _load_state() -> Dictionary:
+func load_save_data() -> Dictionary:
 	var load_data = null
 	if(FileAccess.file_exists(SAVE_PATH)):
 		load_data = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -39,4 +45,3 @@ func _load_state() -> Dictionary:
 			"normal": [],
 			"hard": [],
 		}
-
