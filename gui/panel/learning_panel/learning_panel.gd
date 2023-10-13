@@ -1,4 +1,5 @@
 extends Control
+class_name LearningPanel
 
 @onready var title_label = %TitleLabel
 @onready var content_label = %ContentLabel

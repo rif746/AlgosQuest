@@ -1,0 +1,33 @@
+stage:
+- content:
+  - chapter: Introduction
+	intro: true
+	text: Flowchart is whatever
+  - chapter: Start/End
+	intro: false
+	text: Start/End is whatever
+  - chapter: Process
+	intro: false
+	text: Process is whatever
+  - chapter: Input
+	intro: false
+	text: Input is whatever
+  - chapter: Output
+	intro: false
+	text: Output is whatever
+  - chapter: Branching
+	intro: false
+	text: Branching is whatever
+  id: 1
+  quest:
+  - answer:
+	- correct: false
+	  text: answer 1
+	- correct: false
+	  text: answer 2
+	- correct: false
+	  text: answer 3
+	- correct: true
+	  text: answer 4
+	text: quest 1
+  title: Flowchart

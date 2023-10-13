@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entity/object/computer/computer.gd" id="1_pdswj"]
 [ext_resource type="Texture2D" uid="uid://b64u6r0lsjvek" path="res://assets/sprites/computer.png" id="2_poxi4"]
-[ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/learning_panel/learning_panel.tscn" id="3_cwc6k"]
+[ext_resource type="PackedScene" uid="uid://dp81gvvapn7xq" path="res://gui/panel/ingame/stage_rule_panel.tscn" id="3_4wh1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2ji"]
 size = Vector2(19, 20)
@@ -45,7 +45,8 @@ autoplay = "default"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="LearningPanel" parent="CanvasLayer" instance=ExtResource("3_cwc6k")]
+[node name="StageRulePanel" parent="CanvasLayer" instance=ExtResource("3_4wh1u")]
+unique_name_in_owner = true
 visible = false
 
-[connection signal="hidden" from="CanvasLayer/LearningPanel" to="." method="_on_learning_panel_hidden"]
+[connection signal="hidden" from="CanvasLayer/StageRulePanel" to="." method="_on_panel_hidden"]

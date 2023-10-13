@@ -11,19 +11,7 @@ class_name HUDControl
 @onready var virtual_controller = %VirtualController
 @onready var quest_progress_count = %QuestProgressCount
 
-var stage_data: Dictionary:
-	set(new_stage_data):
-		quest = new_stage_data.mission
-		life_count = quest.size()
-		is_tutorial = new_stage_data.is_tutorial
-		new_stage_data.erase('mission')
-		new_stage_data.erase('is_tutorial')
-		stage_data = new_stage_data
-var quest: Array
-var is_tutorial: bool = false
 var current_stage: World
-var quest_count: int
-var life_count: int
 
 const TUTORIAL_WORLD = "res://world/tutorial.tscn"
 const STAGE_WORLD = [
@@ -49,15 +37,12 @@ func load_stage():
 	if (current_stage is World):
 		current_stage.queue_free()
 	
-	if (is_tutorial):
+	if (StageManager.is_tutorial_stage):
 		current_stage = load(TUTORIAL_WORLD).instantiate()
 	else:
 		var stage = STAGE_WORLD.pick_random()
 		current_stage = load(stage).instantiate()
 	
-	# setup stage data for interaction
-	current_stage.stage_data = stage_data
-	current_stage.quest_available = quest
 	current_stage.item_interaction.connect(virtual_controller.toggle_interact_button)
 	current_stage.stage_clear.connect(_on_stage_cleared)
 	current_stage.quest_loaded.connect(_on_load_quest)
@@ -68,30 +53,29 @@ func load_stage():
 	life_texture.hide()
 
 	# start game timer
-	var timer = current_stage.stage_time
-	stage_timer.set_wait_time(timer)
+	stage_timer.set_wait_time(current_stage.stage_time)
 	stage_timer.start()
 
 func _on_load_quest(new_quest_count):
-	life_count = new_quest_count
-	quest_count = new_quest_count
+	StageManager.life_count = new_quest_count
+	StageManager.object_count = new_quest_count
 	# if (life_count < 3 && quest.size() > 3):
 	# 	life_count = 3
 	
 	# load life texture
 	life_texture.show()
-	quest_progress_count.set_text(str("Found 0 of %d Object" % quest_count))
-	life_texture.custom_minimum_size = Vector2(16 * life_count, 0)
+	quest_progress_count.set_text(str("Found 0 of %d Object" % StageManager.object_count))
+	life_texture.custom_minimum_size = Vector2(16 * StageManager.life_count, 0)
 
 func _on_stage_cleared():
-	SaveLoad.stage_clear(stage_data.id)
+	SaveLoad.stage_clear(StageManager.stage_data.id)
 	GameSystem.pause_game(game_clear_ui)
 
 func _on_quest_cleared(quest_cleared_count: int ,is_true: bool):
-	quest_progress_count.set_text(str("Found %d of %d Object" % [quest_cleared_count, quest_count]))
+	quest_progress_count.set_text(str("Found %d of %d Object" % [StageManager.object_found_count, StageManager.object_count]))
 	if !is_true:
-		life_count -= 1
-		life_texture.custom_minimum_size = Vector2(16 * life_count, 0)
+		StageManager.life_count -= 1
+		life_texture.custom_minimum_size = Vector2(16 * StageManager.life_count, 0)
 
 func _on_stage_timer_timeout():
 	GameSystem.pause_game(game_over_ui)

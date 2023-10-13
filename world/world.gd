@@ -13,11 +13,6 @@ class_name World
 @export var top_left_camera_limit: Marker2D
 @export var bottom_right_camera_limit: Marker2D
 
-var stage_data: Dictionary
-var quest_available: Array
-var quest_success: Array
-var quest_fail: Array
-
 signal item_interaction(detected: bool)
 signal quest_cleared(is_true: bool)
 signal quest_loaded(loaded: int)
@@ -42,28 +37,18 @@ func initialize_object():
 	portal.game_clear.connect(_on_portal_game_clear)
 
 func load_computer_window_content():	
-	computer.install_computer(stage_data.title, stage_data.content)
+	computer.install_computer(StageManager.stage_data)
 
 
 func load_key():
 	var quest_loaded_count = 0;
-	for mission in quest_available:
+	for mission in StageManager.object:
 		var spawned = object_spawner.spawn(load("res://entity/object/flashdisk/flashdisk.tscn"))
-		spawned.install_question.call(mission.question, mission.answer)
-		spawned.answered.connect(_on_game_key_answered)
-		if spawned:
-			quest_loaded_count += 1
-			spawned = null
-			await get_tree().create_timer(.1).timeout
+		if spawned == null:
+			break
+		spawned.title = mission.chapter
+		spawned.content = mission.text
 		quest_loaded.emit(quest_loaded_count)
-
-
-func check_quest_clear():
-	var quest_available_size = quest_available.size()
-	var quest_success_size = quest_success.size()
-	var quest_fail_size = quest_fail.size()
-	if quest_available_size == (quest_fail_size + quest_success_size):
-		exit_door.open_door()
 
 func _on_item_interaction(detected: bool):
 	item_interaction.emit(detected)
@@ -77,11 +62,3 @@ func _on_computer_window_closed():
 func _on_portal_game_clear():
 	stage_clear.emit()
 
-
-func _on_game_key_answered(quest_id, is_true: bool):
-	if is_true:
-		quest_success.append(quest_id)
-	else:
-		quest_fail.append(quest_id)
-	quest_cleared.emit(quest_success.size(), is_true)
-	check_quest_clear()

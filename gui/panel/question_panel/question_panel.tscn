@@ -39,7 +39,7 @@ grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 2
-offset_top = 41.0
+offset_top = 2.0
 offset_right = 484.0
 offset_bottom = 338.0
 size_flags_vertical = 3

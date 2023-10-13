@@ -6,13 +6,13 @@ extends Control
 
 signal answered(is_true: bool)
 
-func install_question(question: String, answer: Array):
+func install_question(quest: Quest):
 	content_label.clear()
-	content_label.add_text(question)
-	load_answer(answer)
+	content_label.add_text(quest.text)
+	load_answer(quest.answer)
 	sfx_control.install_sounds(answer_grid)
 
-func load_answer(answers: Array):
+func load_answer(answers: Array[QuestAnswer]):
 	var button_group = ButtonGroup.new()
 	button_group.pressed.connect(_on_answer_button_pressed)
 	

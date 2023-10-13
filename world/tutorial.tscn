@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxmy4bjdgjul"]
+[gd_scene load_steps=14 format=3 uid="uid://dxmy4bjdgjul"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_6wn2q"]
 [ext_resource type="TileSet" uid="uid://c4thuegftfdu7" path="res://assets/resource/tileset/scifi.tres" id="2_2rt8k"]
@@ -14,6 +14,30 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 50, -42, 0, 0, 0, 0, 45, -26, 0, 0, 0, 0, 38, 13, 0, 0, 0, 0, 43, 49, 0, 0, 0, 0, -20, 44, 0, 0, 0, 0, -20, -6, 0, 0, 0, 0, -21, -21, 0, 0, 0, 0, 2, -38)
 }
 point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_hohtr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -6, -164, 0, 0, 0, 0, 0, -136, 0, 0, 0, 0, 197, -135, 0, 0, 0, 0, 203, -167, 0, 0, 0, 0, 27, -168)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_bnj15"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 363, 40, 0, 0, 0, 0, 487, 40, 0, 0, 0, 0, 493, 88, 0, 0, 0, 0, 384, 92)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_otm08"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 302, 363, 0, 0, 0, 0, 305, 497, 0, 0, 0, 0, 375, 495, 0, 0, 0, 0, 386, 370, 0, 0, 0, 0, 322, 380)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_rlpaa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 490, 331, 0, 0, 0, 0, 564, 336, 0, 0, 0, 0, 647, 358, 0, 0, 0, 0, 651, 452, 0, 0, 0, 0, 581, 475, 0, 0, 0, 0, 560, 432, 0, 0, 0, 0, 517, 361)
+}
+point_count = 7
 
 [node name="TutorialStage" type="Node2D" node_paths=PackedStringArray("character_spawner", "object_spawner", "entrance_door", "exit_door", "computer", "portal", "top_left_camera_limit", "bottom_right_camera_limit")]
 script = ExtResource("1_6wn2q")
@@ -38,6 +62,18 @@ layer_0/tile_data = PackedInt32Array(-327676, 0, 3, -262147, 65536, 0, -262146, 
 curve = SubResource("Curve2D_wcliw")
 
 [node name="ObjectSpawner" parent="." instance=ExtResource("5_kge00")]
+
+[node name="PathSpawner" parent="ObjectSpawner" instance=ExtResource("4_s337s")]
+curve = SubResource("Curve2D_hohtr")
+
+[node name="PathSpawner2" parent="ObjectSpawner" instance=ExtResource("4_s337s")]
+curve = SubResource("Curve2D_bnj15")
+
+[node name="PathSpawner3" parent="ObjectSpawner" instance=ExtResource("4_s337s")]
+curve = SubResource("Curve2D_otm08")
+
+[node name="PathSpawner4" parent="ObjectSpawner" instance=ExtResource("4_s337s")]
+curve = SubResource("Curve2D_rlpaa")
 
 [node name="EntranceDoor" parent="." instance=ExtResource("3_62mvx")]
 position = Vector2(77, 46)

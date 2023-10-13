@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp81gvvapn7xq"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_60hfx"]
+[ext_resource type="Script" path="res://gui/panel/ingame/stage_rule_panel.gd" id="1_ud21g"]
+[ext_resource type="LabelSettings" uid="uid://cxeym524iwyrf" path="res://assets/resource/theme/label_settings/title_medium.tres" id="2_3ykqa"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_7gcpb"]
+
+[node name="StageRulePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ud21g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 0.615686)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -153.0
+offset_right = 308.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_60hfx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title"
+label_settings = ExtResource("2_3ykqa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListContainer" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/separation = 5
+
+[node name="CloseButton" type="Button" parent="Panel"]
+offset_left = 588.0
+offset_top = -26.0
+offset_right = 645.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 24
+text = "x"
+
+[node name="sfx_control" parent="." instance=ExtResource("3_7gcpb")]
+root_node = NodePath("../Panel")
+
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
