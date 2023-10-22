@@ -16,11 +16,9 @@ func _ready():
 		
 		# add meta to button
 		button.set_meta("stage_data", stage)
-		button.set_meta("is_unlocked", StageLoader.stage_unlocked(stage.id))
-		button.set_meta("is_cleared", StageLoader.stage_cleared(stage.id))
 		
 		# disable button when stage lockeds
-		if !StageLoader.stage_unlocked(stage.id):
+		if !stage.is_unlocked:
 			button.disabled = true
 		
 		# add button to container
@@ -30,11 +28,9 @@ func _ready():
 
 
 func _on_stage_button_pressed(btn):
-	var stage_data = btn.get_meta("stage_data", {})
-	var is_unlocked = btn.get_meta("is_unlocked", false)
-	var is_cleared = btn.get_meta("is_cleared", false)
+	var stage_data: StageData = btn.get_meta("stage_data", {})
 	
-	if not is_cleared:
+	if not stage_data.is_cleared:
 		StageManager.stage_data = stage_data
 		SceneChanger.change_scene("res://gui/game/hud.tscn")
 	else:

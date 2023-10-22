@@ -41,14 +41,15 @@ func load_computer_window_content():
 
 
 func load_key():
-	var quest_loaded_count = 0;
 	for mission in StageManager.object:
 		var spawned = object_spawner.spawn(load("res://entity/object/flashdisk/flashdisk.tscn"))
 		if spawned == null:
 			break
 		spawned.title = mission.chapter
 		spawned.content = mission.text
-		quest_loaded.emit(quest_loaded_count)
+		spawned.load_content()
+		StageManager.object_count += 1
+	StageManager.life_count = get_meta("life_count", 3)
 
 func _on_item_interaction(detected: bool):
 	item_interaction.emit(detected)

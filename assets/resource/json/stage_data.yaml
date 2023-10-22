@@ -1,5 +1,8 @@
 stage:
-- content:
+- id: 1
+  title: Flowchart
+  is_tutorial: true
+  content:
   - chapter: Introduction
 	intro: true
 	text: Flowchart is whatever
@@ -18,9 +21,9 @@ stage:
   - chapter: Branching
 	intro: false
 	text: Branching is whatever
-  id: 1
   quest:
-  - answer:
+  - text: quest 1
+	answer:
 	- correct: false
 	  text: answer 1
 	- correct: false
@@ -29,5 +32,4 @@ stage:
 	  text: answer 3
 	- correct: true
 	  text: answer 4
-	text: quest 1
-  title: Flowchart
+  
