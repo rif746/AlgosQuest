@@ -5,4 +5,5 @@
 [node name="BGM" type="AudioStreamPlayer"]
 process_mode = 3
 stream = ExtResource("1_wsiwj")
+autoplay = true
 bus = &"BGM"

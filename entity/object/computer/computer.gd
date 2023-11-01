@@ -4,8 +4,6 @@ class_name Computer
 @onready var stage_rule_panel = %StageRulePanel
 
 
-signal window_closed()
-
 func install_computer(stage_data: StageData):
 	var rules: Array[String] = []
 	rules.append("Terdapat %d objek yang tersebar." % stage_data.content.size())
@@ -16,8 +14,8 @@ func install_computer(stage_data: StageData):
 	stage_rule_panel.install_rule(stage_data.title, rules)
 
 func interaction():
-	stage_rule_panel.show()
+	stage_rule_panel.visible = !stage_rule_panel.visible
 
 
 func _on_panel_hidden():
-	window_closed.emit()
+	StageManager.object_ready = true

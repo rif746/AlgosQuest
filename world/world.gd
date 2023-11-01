@@ -14,8 +14,6 @@ class_name World
 @export var bottom_right_camera_limit: Marker2D
 
 signal item_interaction(detected: bool)
-signal quest_cleared(is_true: bool)
-signal quest_loaded(loaded: int)
 signal stage_clear()
 
 func _ready():
@@ -33,8 +31,9 @@ func initialize_object():
 	instantiated_character.set_camera_limit(tl_camera_limit, br_camera_limit)
 	
 	instantiated_character.item_interaction.connect(_on_item_interaction)
-	computer.window_closed.connect(_on_computer_window_closed)
 	portal.game_clear.connect(_on_portal_game_clear)
+	StageManager.exit_door_open.connect(_on_quest_cleared)
+	StageManager.object_loaded.connect(_on_computer_window_closed)
 
 func load_computer_window_content():	
 	computer.install_computer(StageManager.stage_data)
@@ -55,11 +54,14 @@ func _on_item_interaction(detected: bool):
 	item_interaction.emit(detected)
 
 
-func _on_computer_window_closed():
+func _on_computer_window_closed(_loaded):
 	entrance_door.open_door()
 	load_key()
 
 
 func _on_portal_game_clear():
 	stage_clear.emit()
+
+func _on_quest_cleared():
+	exit_door.open_door()
 

@@ -54,7 +54,8 @@ size_flags_vertical = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Timer" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="TimerLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "00:00"
 
@@ -106,4 +107,7 @@ text = "x"
 [node name="sfx_control" parent="." instance=ExtResource("4_mncd4")]
 root_node = NodePath("../Panel")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,13 +2,10 @@ extends Node
 
 const STAGE_FILE = "res://assets/resource/json/stage_data.json"
 var stage: Array[StageData]
-var flowchart: Flowchart = Flowchart.new()
 
 func _ready():
 	var stage_data = FileAccess.get_file_as_string(STAGE_FILE)
 	stage_data = JSON.parse_string(stage_data)
-	flowchart.instruction = "buat variabel (nama) dengan tipedata (string) atau (integer)"
-	flowchart.type = 1
 	load_stage(stage_data.stage)
 
 func load_stage(stages: Array):

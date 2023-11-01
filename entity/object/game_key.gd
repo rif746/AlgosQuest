@@ -1,7 +1,8 @@
 extends StaticBody2D
 class_name GameKey
 
-@export var panel: LearningPanel
+@export var panel: Control
+
 var title: String
 var content: String
 var is_close: bool = true
@@ -13,9 +14,11 @@ func load_content():
 	panel.install_window(title, content)
 
 func interaction():
-	panel.show()
+	panel.visible = !panel.visible
 
 func _on_panel_hide():
 	if is_close:
 		is_close = false
 		StageManager.object_found_count += 1
+		StageManager.object_found.emit(title)
+		queue_free()

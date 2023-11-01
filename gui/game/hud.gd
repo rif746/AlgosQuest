@@ -7,16 +7,13 @@ class_name HUDControl
 @onready var pause_ui = $HUDCanvas/PauseUI
 @onready var game_over_ui = $HUDCanvas/GameOverUI
 @onready var game_clear_ui = $HUDCanvas/GameClearUI
-@onready var life_texture = %LifeTexture
+@onready var progress_panel = $HUDCanvas/ProgressPanel
 @onready var virtual_controller = %VirtualController
-@onready var quest_progress_count = %QuestProgressCount
+@onready var learning_panel = %LearningPanel
 
 var current_stage: World
 
 const TUTORIAL_WORLD = "res://world/tutorial.tscn"
-const STAGE_WORLD = [
-	"res://world/easy/stage_1.tscn"
-]
 
 func _ready():
 	player_name_label.set_text(Settings.userName)
@@ -29,6 +26,9 @@ func _process(_delta):
 	var seconds = fmod(stage_timer.time_left, 60)
 	timer_label.set_text(str("%02d:%02d" % [minutes, seconds]))
 
+	if (Input.is_action_just_pressed("ui_select") && StageManager.object_ready):
+		progress_panel.visible = !progress_panel.visible;
+
 
 func load_stage():
 	randomize()
@@ -40,32 +40,41 @@ func load_stage():
 	if (StageManager.is_tutorial_stage):
 		current_stage = load(TUTORIAL_WORLD).instantiate()
 	else:
-		var stage = STAGE_WORLD.pick_random()
+		var stage = get_random_world_file()
 		current_stage = load(stage).instantiate()
 	
 	current_stage.item_interaction.connect(virtual_controller.toggle_interact_button)
-	StageManager.life_count_changed.connect(_on_life_count_changed)
-	StageManager.object_count_changed.connect(_on_object_count_changed)
-	StageManager.object_found_count_changed.connect(_on_object_count_changed)
+	StageManager.object_loaded.connect(virtual_controller.toggle_progress_button)
+	StageManager.game_over.connect(_on_stage_timer_timeout)
 	
 	add_child(current_stage)
-
-	life_texture.hide()
 
 	# start game timer
 	stage_timer.set_wait_time(current_stage.stage_time)
 	stage_timer.start()
 
-func _on_life_count_changed(life):
-	life_texture.show()
-	life_texture.custom_minimum_size = Vector2(16 * life, 0)
+
+func get_random_world_file():
+	var files = []
+	var dir = DirAccess.open("res://world/main/")
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			files.append(file)
+
+	dir.list_dir_end()
+
+	return files.pick_random()
+
 
 func _on_stage_cleared():
 	SaveLoad.stage_clear(StageManager.stage_data.id)
 	GameSystem.pause_game(game_clear_ui)
-
-func _on_object_count_changed(count:int, total: int):
-	quest_progress_count.set_text(str("Found %d of %d Object" % [count, total]))
+	
 
 func _on_stage_timer_timeout():
 	GameSystem.pause_game(game_over_ui)
@@ -77,3 +86,8 @@ func _on_pause_button_pressed():
 
 func _on_game_over_ui_restart_game():
 	load_stage()
+
+
+func _on_progress_panel_learn(title, content):
+	learning_panel.show()
+	learning_panel.install_window(title, content)

@@ -240,7 +240,7 @@ shape = SubResource("CapsuleShape2D_sn8ef")
 texture = ExtResource("2_2ceps")
 hframes = 4
 vframes = 4
-frame = 4
+frame = 12
 
 [node name="ItemDetector" type="Area2D" parent="."]
 collision_layer = 0

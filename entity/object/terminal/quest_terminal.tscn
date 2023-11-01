@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppydbmfly7xy"]
+
+[ext_resource type="Script" path="res://entity/object/terminal/quest_terminal.gd" id="1_etp7c"]
+[ext_resource type="Texture2D" uid="uid://egeymd18ute" path="res://assets/sprites/doodads_spritesheet.png" id="1_skdit"]
+[ext_resource type="PackedScene" uid="uid://b6vouogbmd2us" path="res://gui/panel/question_panel/question_panel.tscn" id="3_xhbim"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_to2ue"]
+radius = 5.0
+height = 10.0
+
+[node name="QuestTerminal" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_etp7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_to2ue")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.461538, 0.375)
+texture = ExtResource("1_skdit")
+hframes = 7
+vframes = 5
+frame = 13
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="QuestionPanel" parent="CanvasLayer" instance=ExtResource("3_xhbim")]
+visible = false

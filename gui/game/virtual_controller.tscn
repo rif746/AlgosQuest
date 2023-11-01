@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dos7lh1mveb3q"]
+[gd_scene load_steps=7 format=3 uid="uid://dos7lh1mveb3q"]
 
 [ext_resource type="Script" path="res://gui/game/virtual_controller.gd" id="1_gjyqq"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="1_vkfb3"]
 [ext_resource type="Texture2D" uid="uid://b6qvcuwrhjuwe" path="res://assets/sprites/controller/button_normal.png" id="2_ew2pg"]
 [ext_resource type="Texture2D" uid="uid://dyn6dq7x4gf7n" path="res://assets/sprites/controller/button_pressed.png" id="3_hxluh"]
+[ext_resource type="Texture2D" uid="uid://6273nlcvae3v" path="res://assets/sprites/controller/button_progress_normal.png" id="5_lvwbj"]
+[ext_resource type="Texture2D" uid="uid://i6k2p5wg104y" path="res://assets/sprites/controller/button_progress_pressed.png" id="6_oug7k"]
 
 [node name="VirtualController" type="Control"]
 layout_mode = 3
@@ -23,7 +25,13 @@ offset_bottom = 0.0
 scale = Vector2(0.8, 0.8)
 
 [node name="InteractButton" type="TouchScreenButton" parent="."]
-position = Vector2(581, 231)
+position = Vector2(519, 245)
 texture_normal = ExtResource("2_ew2pg")
 texture_pressed = ExtResource("3_hxluh")
 action = "ui_accept"
+
+[node name="ProgressButton" type="TouchScreenButton" parent="."]
+position = Vector2(594, 175)
+texture_normal = ExtResource("5_lvwbj")
+texture_pressed = ExtResource("6_oug7k")
+action = "ui_select"

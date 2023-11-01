@@ -4,20 +4,27 @@ extends Control
 @onready var answer_grid = %AnswerGrid
 @onready var sfx_control = $sfx_control
 @onready var point_label = %PointLabel
+@onready var timer = $Timer
+@onready var timer_label = %TimerLabel
 
 var quest: Array[Quest]
 var question_loaded: int = 0
 
-signal answered(is_true: bool)
 
-func _ready():
-	var stage = StageLoader.stage[0]
-	install_question(stage.quest)
+func _process(_delta):
+	if not timer.is_stopped():
+		var minutes = timer.time_left / 60;
+		var seconds = fmod(timer.time_left, 60)
+		timer_label.set_text(str("%02d:%02d" % [minutes, seconds]))
+
 
 func install_question(_quest: Array[Quest]):
 	quest = _quest
 	quest.shuffle()
 	load_question()
+	StageManager.question_time = _quest.size() * 20
+	timer.wait_time = StageManager.question_time
+
 
 func load_question():
 	content_label.clear()
@@ -26,9 +33,11 @@ func load_question():
 	load_answer(quest[question_loaded].answer)
 	sfx_control.install_sounds(answer_grid)
 
+
 func clear_answer_button():
 	for button in answer_grid.get_children():
 		answer_grid.remove_child(button)
+
 
 func load_answer(answers: Array[QuestAnswer]):
 	answers.shuffle()
@@ -46,6 +55,7 @@ func load_answer(answers: Array[QuestAnswer]):
 		
 		answer_grid.add_child(button)
 
+
 func _on_answer_button_pressed(button: Button):
 	var correct = button.get_meta("correct")
 	if correct:
@@ -59,7 +69,17 @@ func _on_answer_button_pressed(button: Button):
 		load_question()
 	else:
 		hide()
-	
+		StageManager.exit_door_open.emit()
+
 
 func _on_close_button_pressed():
 	hide()
+	timer.stop()
+
+
+func start_timer():
+	timer.start()
+
+
+func _on_timer_timeout():
+	StageManager.game_over.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvjyq06iqdqso"]
+[gd_scene load_steps=17 format=3 uid="uid://cvjyq06iqdqso"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_f423e"]
 [ext_resource type="LabelSettings" uid="uid://c5cu2jfhxu476" path="res://assets/resource/theme/label_settings/content_small.tres" id="2_d3yd1"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dos7lh1mveb3q" path="res://gui/game/virtual_controller.tscn" id="6_ewse6"]
 [ext_resource type="PackedScene" uid="uid://cjtqpvltajqhc" path="res://gui/panel/ingame/game_clear_panel.tscn" id="6_jogip"]
 [ext_resource type="PackedScene" uid="uid://c1auf0eh7bx3d" path="res://gui/panel/ingame/game_over_panel.tscn" id="7_l7rfu"]
+[ext_resource type="PackedScene" uid="uid://cx54n5rmbbsff" path="res://gui/panel/ingame/progress_panel.tscn" id="10_hv5dv"]
+[ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/learning_panel/learning_panel.tscn" id="11_3oy1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqtop"]
 content_margin_left = 5.0
@@ -149,19 +151,7 @@ size_flags_vertical = 6
 texture = ExtResource("5_r1mb0")
 stretch_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="QuestProgressCount" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 1
-text = "Found 0 of 0 Object"
-label_settings = ExtResource("2_d3yd1")
-
-[node name="TimerLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TimerLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -187,7 +177,11 @@ size_flags_vertical = 3
 
 [node name="InteractButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController" index="1"]
 visible = false
-position = Vector2(549, 159)
+position = Vector2(521, 150)
+
+[node name="ProgressButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController" index="2"]
+visible = false
+position = Vector2(592, 81)
 
 [node name="PauseUI" parent="HUDCanvas" instance=ExtResource("5_2vh43")]
 visible = false
@@ -198,7 +192,15 @@ visible = false
 [node name="GameOverUI" parent="HUDCanvas" instance=ExtResource("7_l7rfu")]
 visible = false
 
+[node name="ProgressPanel" parent="HUDCanvas" instance=ExtResource("10_hv5dv")]
+visible = false
+
+[node name="LearningPanel" parent="HUDCanvas" instance=ExtResource("11_3oy1x")]
+unique_name_in_owner = true
+visible = false
+
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
 [connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="learn" from="HUDCanvas/ProgressPanel" to="." method="_on_progress_panel_learn"]
 
 [editable path="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController"]
