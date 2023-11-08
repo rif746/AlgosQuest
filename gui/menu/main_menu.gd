@@ -4,7 +4,7 @@ class_name MainMenu
 @onready var about_panel = $AboutPanel
 
 func _on_exit_button_pressed():
-	GameSystem.exit_panel.show()
+	SceneChanger.exit_panel.show()
 
 
 func _on_play_button_pressed():

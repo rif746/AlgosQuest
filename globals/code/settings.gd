@@ -15,6 +15,9 @@ const DIFFICULTY_STRING = [
 # settings file path
 const SETTINGS_PATH = "user://settings.dat"
 
+# encryption salt
+const SALT = "43204e5dfe2ef7b2f1aa59b3d08ccef1"
+
 # game difficulty (default: EASY)
 var difficulty: Difficulty = Difficulty.EASY
 
@@ -59,16 +62,17 @@ func get_next_difficulty():
 # load saved settings from binary file
 func load_setting():
 	if(FileAccess.file_exists(SETTINGS_PATH)):
-		var save_data = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
-		save_data = save_data.get_var()
-		set_bgm(save_data.bgm)
-		set_sfx(save_data.sfx)
-		set_player_name(save_data.userName)
-		set_difficulty(save_data.difficulty)
+		var settings = FileAccess.open_encrypted_with_pass(SETTINGS_PATH, FileAccess.READ, SALT)
+		if settings != null:
+			settings = settings.get_var()
+			set_bgm(settings.bgm)
+			set_sfx(settings.sfx)
+			set_player_name(settings.userName)
+			set_difficulty(settings.difficulty)
 
 # save settings to binary file
 func save_setting():
-	var save_data = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	var settings = FileAccess.open_encrypted_with_pass(SETTINGS_PATH, FileAccess.WRITE, SALT)
 	var data = {
 		"bgm": bgm,
 		"sfx": sfx,
@@ -76,4 +80,4 @@ func save_setting():
 		"difficulty": difficulty,
 	}
 	
-	save_data.store_var(data)
+	settings.store_var(data)

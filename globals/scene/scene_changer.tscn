@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://pa4m5hj2njek"]
+[gd_scene load_steps=6 format=3 uid="uid://pa4m5hj2njek"]
 
 [ext_resource type="Script" path="res://globals/scene/scene_changer.gd" id="1_bfo5p"]
+[ext_resource type="PackedScene" uid="uid://3xvwa3hwpyhl" path="res://gui/panel/exit_panel/exit_panel.tscn" id="2_6imaq"]
 
 [sub_resource type="Animation" id="Animation_nv7f6"]
 resource_name = "dissolve"
@@ -64,12 +65,18 @@ _data = {
 "dissolve_with_loading_bar": SubResource("Animation_lt4p0")
 }
 
-[node name="scene_changer" type="CanvasLayer"]
-layer = 0
-follow_viewport_enabled = true
+[node name="Control" type="CanvasLayer"]
+layer = 5
 script = ExtResource("1_bfo5p")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ExitPanel" parent="." instance=ExtResource("2_6imaq")]
+visible = false
+
+[node name="scene_changer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="scene_changer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -77,12 +84,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117647, 0.27451, 0.364706, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene_changer"]
 libraries = {
 "": SubResource("AnimationLibrary_2kwvm")
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="scene_changer"]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5

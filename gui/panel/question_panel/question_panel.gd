@@ -2,6 +2,7 @@ extends Control
 
 @onready var content_label = %ContentLabel
 @onready var answer_grid = %AnswerGrid
+@onready var answer_list = %AnswerList
 @onready var sfx_control = $sfx_control
 @onready var point_label = %PointLabel
 @onready var timer = $Timer
@@ -10,20 +11,26 @@ extends Control
 var quest: Array[Quest]
 var question_loaded: int = 0
 
+func _ready():
+	install_question(StageLoader.stage[0].quest)
 
 func _process(_delta):
 	if not timer.is_stopped():
-		var minutes = timer.time_left / 60;
-		var seconds = fmod(timer.time_left, 60)
+		var time_left = timer.time_left
+		var minutes = time_left / 60;
+		var seconds = fmod(time_left, 60)
 		timer_label.set_text(str("%02d:%02d" % [minutes, seconds]))
+		StageManager.question_time = time_left
 
 
 func install_question(_quest: Array[Quest]):
-	quest = _quest
+	for q in _quest:
+		if quest.find(q) == -1:
+			StageManager.question_time += 20
+			if StageManager.question_answered.find(q.text) == -1:
+				quest.append(q)
 	quest.shuffle()
 	load_question()
-	StageManager.question_time = _quest.size() * 20
-	timer.wait_time = StageManager.question_time
 
 
 func load_question():
@@ -48,22 +55,20 @@ func load_answer(answers: Array[QuestAnswer]):
 		var button = Button.new()
 		button.set_meta("correct", answer.correct)
 		button.set_custom_minimum_size(Vector2(150, 40))
-		button.set_text(answer.text)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.button_group = button_group
 		button.toggle_mode = true
-		
+		button.set_text(answer.text)
 		answer_grid.add_child(button)
+		button.size = Vector2(150, 40)
 
 
 func _on_answer_button_pressed(button: Button):
 	var correct = button.get_meta("correct")
-	if correct:
-		StageManager.question_correct += 1
-		point_label.set_text(str(StageManager.question_correct * (100/quest.size())))
-	else:
-		StageManager.question_incorrect += 1
-	
+	if not correct:
+		#point_label.set_text(str(StageManager.question_correct * (100/quest.size())))
+		timer.start(timer.time_left - 30)
+	StageManager.question_answered.push_back(quest[question_loaded].text)
 	if question_loaded != quest.size()-1:
 		question_loaded += 1
 		load_question()
@@ -74,12 +79,17 @@ func _on_answer_button_pressed(button: Button):
 
 func _on_close_button_pressed():
 	hide()
-	timer.stop()
 
 
 func start_timer():
-	timer.start()
+	timer.start(StageManager.question_time)
 
 
 func _on_timer_timeout():
+	hide()
 	StageManager.game_over.emit()
+
+
+func _on_hidden():
+	timer.stop()
+	SceneChanger.resume_game(self)

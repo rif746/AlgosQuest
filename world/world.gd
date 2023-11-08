@@ -10,7 +10,7 @@ class_name World
 @export var portal: Portal
 @export var use_light: bool
 @export var stage_time: int
-@export var top_left_camera_limit: Marker2D
+@export var top_left_camera_limit: Marker	2D
 @export var bottom_right_camera_limit: Marker2D
 
 signal item_interaction(detected: bool)

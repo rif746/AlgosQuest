@@ -23,7 +23,6 @@ func load_stage(stages: Array):
 			var _content = MaterialContent.new()
 			_content.chapter = content.chapter
 			_content.text = content.text
-			_content.intro = content.intro
 			_s.content.append(_content)
 		
 		# load stage question
@@ -41,3 +40,15 @@ func load_stage(stages: Array):
 			_s.quest.append(_quest)
 		
 		stage.append(_s)
+
+
+func stage_unlocked(id):
+	for _stage in stage:
+		if _stage.id == id+1:
+			_stage.is_unlocked = true
+
+
+func stage_cleared(id):
+	for _stage in stage:
+		if _stage.id == id:
+			_stage.is_cleared = true

@@ -15,6 +15,8 @@ func _ready():
 		btn.disabled = true
 		btn.flat = true
 		btn.toggle_mode = true
+		btn.mouse_filter = btn.MOUSE_FILTER_IGNORE
+		btn.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		btn.set_meta("chapter", content.chapter)
 		btn.set_meta("text", content.text)
 		btn.button_group = btn_group
@@ -31,6 +33,7 @@ func _on_object_found(chapter):
 	for button in btn_group.get_buttons():
 		var btn_chapter = button.get_meta('chapter')
 		if chapter == btn_chapter:
+			button.mouse_filter = button.MOUSE_FILTER_PASS
 			button.disabled = false
 
 

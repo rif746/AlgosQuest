@@ -8,8 +8,9 @@ func _ready():
 	StageManager.can_answer_question.connect(_on_can_answer_question)
 
 func _on_can_answer_question():
-	collision_layer = 3
+	set_collision_layer_value(3, true)
 
 func interaction():
+	StageManager.pause_game.emit(question_panel)
 	question_panel.show()
 	question_panel.start_timer()

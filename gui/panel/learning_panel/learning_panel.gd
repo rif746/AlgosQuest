@@ -7,7 +7,7 @@ class_name LearningPanel
 func install_window(title: String, content: String):
 	title_label.set_text(title)
 	content_label.clear()
-	content_label.add_text(content)
+	content_label.append_text(content)
 
 func _on_close_button_pressed():
 	hide()

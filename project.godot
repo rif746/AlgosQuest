@@ -24,7 +24,6 @@ SaveLoad="*res://globals/code/save_and_load.gd"
 Settings="*res://globals/code/settings.gd"
 BGMAudioStream="*res://globals/scene/bgm_audio_stream.tscn"
 SceneChanger="*res://globals/scene/scene_changer.tscn"
-GameSystem="*res://globals/scene/game_system.tscn"
 StageLoader="*res://globals/code/stage_loader.gd"
 StageManager="*res://globals/code/stage_manager.gd"
 
@@ -36,6 +35,7 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=720
 window/size/viewport_height=400
+window/size/mode=3
 window/size/extend_to_title=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"

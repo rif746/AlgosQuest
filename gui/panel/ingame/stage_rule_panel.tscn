@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_60hfx"]
 [ext_resource type="Script" path="res://gui/panel/ingame/stage_rule_panel.gd" id="1_ud21g"]
-[ext_resource type="LabelSettings" uid="uid://cxeym524iwyrf" path="res://assets/resource/theme/label_settings/title_medium.tres" id="2_3ykqa"]
 [ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_7gcpb"]
+[ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="3_wnjur"]
 
 [node name="StageRulePanel" type="Control"]
 layout_mode = 3
@@ -38,27 +38,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_60hfx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 
-[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Title"
-label_settings = ExtResource("2_3ykqa")
+label_settings = ExtResource("3_wnjur")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ListContainer" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer"]
+[node name="ListContainer" type="VBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

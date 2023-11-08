@@ -1,35 +1,445 @@
 stage:
-- id: 1
-  title: Flowchart
-  is_tutorial: true
-  content:
-  - chapter: Introduction
-	intro: true
-	text: Flowchart is whatever
-  - chapter: Start/End
-	intro: false
-	text: Start/End is whatever
-  - chapter: Process
-	intro: false
-	text: Process is whatever
-  - chapter: Input
-	intro: false
-	text: Input is whatever
-  - chapter: Output
-	intro: false
-	text: Output is whatever
-  - chapter: Branching
-	intro: false
-	text: Branching is whatever
-  quest:
-  - text: quest 1
-	answer:
-	- correct: false
-	  text: answer 1
-	- correct: false
-	  text: answer 2
-	- correct: false
-	  text: answer 3
-	- correct: true
-	  text: answer 4
-  
+  - id: 1
+    title: Dasar-dasar Algoritma
+    is_tutorial: true
+    content:
+      - chapter: Definisi
+        text: >
+          Algoritma merupakan langkah-langkah penyelesaian masalah yang disusun secara sistematis dan logis.
+          Artinya setiap langkah harus dapat diikuti atau ditelusuri dengan baik sehingga mencapai hasil akhir yang diinginkan.
+          Langkah tersebut tidak hanya terbatas pada matematika atau komputer saja, tetapi dapat diartikan secara luas.
+          Selain itu, algoritma haruslah terbatas, agar algoritma dapat diselesaikan. Karena tujuan dari algoritma adalah menyelesaikan suatu permasalahan.
+          Seperti perbaikan barang, memasak, atau lainnya.
+      - chapter: Struktur
+        text: >
+          Secara umum, Struktur algoritma terdiri dari 4 bagian, yaitu.
+
+          [ul]
+          Nama/Judul Algoritma
+          -> Nama algoritma dapat memberikan gambaran untuk apa algoritma dibuat.
+          Pemberian nama algoritma haruslah singkat dan jelas, namun mewakili kegunaannya.
+          biasanya penulisan nama algoritma pada komputer tidak menggunakan <spasi>.
+          misal "Algoritma MenghitungVolumeBalok" atau "Algoritma Menghitung_Volume_Balok".
+
+          Deklarasi
+          -> Bagian Deklarasi merupakan tahap persiapan dari sebuah algoritma.
+          Semua kebutuhan dari algoritma agar dapat dijalankan ditulis dibagian ini.
+          contohnya seperti "Alat dan Bahan" dalam sebuah resep makanan.
+
+          Deskripsi
+          -> Pada bagian Deskripsi dituliskan langkah-langkah atau pernyataan untuk memproses semua
+          yang ada dalam bagian deklarasi, sehingga dapat menghasilkan output yang sesuai.
+          [/ul]
+
+          [img width=425]res://assets/images/material/1/gambaran-struktur-algoritma.png[/img]
+      - chapter: Penyajian Algoritma
+        text: |
+          Menurut Donald Evin Knucell, Penyajian Algoritma yang baik dan benar harus memiliki kriteria sebagai berikut.
+          [ul]
+          Input (Masukan)
+          Output (Keluaran)
+          Finite (Terbatas)
+          Define (Pasti)
+          Efisien
+          [/ul]
+      - chapter: Kriteria Algoritma (Input)
+        text: >
+          Setiap algoritma memiliki input, baik dari pengguna ataupun tidak.
+          Contohnya adalah algoritma menghitung bilangan prima dibawah angka 100.
+          Algoritma seperti ini tidak membutuhkan input dari pengguna,
+          karena sudah ditetapkan bahwa bilangan prima yang akan dihitung hanya sampai angka 100.
+          Berbeda jika perhitungan bilangan prima dibawah angka [i]n[/i], dimana [i]n[/i] merupakan sebuah variabel yang harus pengguna tentukan.
+      - chapter: Kriteria Algoritma (Output)
+        text: >
+          Algoritma bertujuan untuk menyelesaikan suatu masalah, dimana penyelesaian tersebut dinamakan output dari algoritma.
+      - chapter: Kriteria Algoritma (Finite/Terbatas)
+        text: >
+          Algoritma harus memiliki langkah yang terbatas. Artinya langkah dari suatu lagoritma memiliki sebuah akhir.
+          Jika algoritma tidak memiliki akhir, maka akan terjadi [i]error[/i] ketika diterapkan pada komputer.
+      - chapter: Kriteria Algoritma (Define/Pasti)
+        text: >
+          Setiap langkah memiliki tujuan yang pasti, tidak ambigu atau bermakna ganda.
+          Suatu program yang ditulis, harus memiliki arah dan tujuan yang jelas, kapan dimulai dan kapan berakhir.
+      - chapter: Kriteria Algoritma (Efisien)
+        text: >
+          Proses penyelesaian masalah tidak berbelit. Sehingga tidak membutuhkan banyak tenaga dan waktu saat dieksekusi.
+          Jika diterapkan pada komputer, penggunaan memori lebih sedikit dan memiliki waktu eksekusi lebih cepat.
+      - chapter: Contoh Algoritma
+        text: |
+          [font size=18][b]RESEP PUDING MUTIARA[/b][/font]
+          Bahan:
+          [ul]
+          1 bungkus tepung hunkwe
+          250 gram gula pasir
+          1 gelas santan kental
+          3 gelas air
+          100 gram mutiara/ pacar cina, rebus, tiriskan
+          1 lembar daun pandan
+          1⁄2 sendok teh garam
+          [/ul]
+          Cara Pembuatan:
+          [ol]
+          Campurkan tepung hunkwe, gula pasir dan santan, tambahkan air, garam dan daun pandan lalu masak sambil diaduk agar rata.
+          Masukkan mutiara ke dalam adonan tepung hunkwe, aduk hingga rata.
+          Tunggu hingga adonan mendiddih dan mengental, angkat dan tuang dalam cetakan, kemudian dinginkan
+          Jika puding sudah dingin dan padat, keluarkan dari cetakan dan sajikan.
+          [/ol]
+
+          Dalam algoritma resep diatas, dapat dilihat bahwa proses pembuatan puding mutiara disusun secara sistematis dalam bentuk berurutan.
+          Dimana judul algoritma dari resep diatas adalah "Resep Puding Mutiara," lalu blok "Bahan" merupakan bagian deklarasi,
+          dan "Cara Pembuatan" adalah deksripsi dari algoritma yang telah disusun.
+    quest:
+      - text: Berikut ini adalah pernyataan yang benar mengenai algoritma, kecuali ....
+        answer:
+          - text: Algoritma merupakan prosedur pemecahan masalah
+            correct: false
+          - text: Algoritma berisi rangkaian langkah-langkah kerja
+            correct: false
+          - text: Algoritma tidak harus menghasilkan output
+            correct: true
+          - text: Algoritma pasti memberikan hasil yang sama untuk inputan yang sama
+            correct: false
+      - text: Bagian persiapan dari sebuah algoritma disebut dengan bagian ....
+        answer:
+          - text: Deklarasi
+            correct: true
+          - text: Header
+            correct: false
+          - text: Deskripsi
+            correct: false
+          - text: Preparation
+            correct: false
+      - text: Berikut ini pernyataan yang benar mengenai input dan output dalam algoritma, kecuali ...
+        answer:
+          - text: Algoritma harus memiliki minimal 1 output
+            correct: false
+          - text: Algoritma bisa memiliki nol input dari pengguna
+            correct: false
+          - text: Algoritma bisa memiliki input dari algoritma itu sendiri
+            correct: false
+          - text: Algoritma boleh tidak memiliki output
+            correct: true
+      - text: >
+          Sebuah algoritma dijalankan melalui sekian langkah dengan kriteria-kriteria tertentu. Namun
+          ketika ditelusuri, algoritma itu akan berulang ke satu langkah secara terus menerus sehingga
+          tidak ada jaminan algoritma tersebut berhenti. Ini artinya algoritma tidak memenuhi sifat...
+        answer:
+          - text: Define
+            correct: false
+          - text: Finite
+            correct: true
+          - text: Efisien
+            correct: false
+          - text: Efektif
+            correct: false
+
+  - id: 2
+    title: Variabel dan Tipe Data
+    is_tutorial: false
+    content:
+      - chapter: Pengenalan Variabel
+        text: >
+          Variabel adalah suatu nama simbolik yang akan diberikan informasi atau nilai tertentu.
+          Nilai-nilai tersebut tidaklah selalu berupa bilangan, bisa berupa
+          karakter, rangkaian karakter (string), nilai benar salah (boolean), dan sebagainya yang disebut
+          sebagai tipe data. Dengan menyimpan nilai-nilai pada variabel akan memudahkan kita untuk
+          melakukan operasi, seperti menerapkan rumus, mengganti atau mengubah nilai, dan operasioperasi lain.
+          Penentuan variabel tergantung dengan kebutuhan dari algoritma.
+      - chapter: Penulisan Variabel
+        text: >
+          Tidak ada aturan khusus pemberian nama variabel dalam algoritma, namun demikian
+          mengingat bahwa algoritma ini nantinya diarahkan ke dunia pemrograman, maka digunakan
+          aturan yang mengarah ke pemberian nama variabel dalam pemrograman.
+
+          Variabel dapat diberi nama dengan sebuah huruf, serangkaian huruf dan simbol, atau serangkaian huruf dan angka.
+          Contohnya untuk variabel panjang dari sebuah balok, dapat di definisikan dengan p, panjang_balok, atau panjangBalok1.
+      - chapter: Pengenalan Tipe Data
+        text: >
+          Setiap variabel dalam sebuah algoritma memiliki tipe data-nya sendiri.
+          Ada beberapa tipe data yang dapat digunakan dalam algoritma.
+          Seperti bilangan real, integer, string, karakter, dan boolean.
+      - chapter: Tipe Data String
+        text: >
+          Tipe data string merupakan susunan dari satu atau lebih karakter. Sebagai contoh: “abc”,
+          “HAPPY”, “100102001”. Biasanya untuk mendefinisikan tipe data string ini harus diberikan batasan
+          maksimal berapa ukuran atau panjang maksimal string yang bisa dialokasikan.
+
+
+          Sebagai contoh: variabel nama bertipe data String[30], artinya maksimal panjang nama
+          adalah 30. Variabel lain yang menggunakan tipe data ini adalah Alamat, TempatLahir, NomorHP,
+          Sekolah, dan sebagainya.
+      - chapter: Tipe Data Karakter
+        text: >
+          Data karakter adalah data sebuah tipe data berupa digits, huruf atau simbol tunggal.
+          Yang membedakan tipe data ini dengan tipe data lainnya adalah biasanya nilai
+          tipe data ini diapit oleh tanda petik.
+
+
+          Contoh: “a”, “H”, “6”, “^”, “>” dan sebagainya.
+          Meskipun terdapat angaka 6, tapi karena diapit oleh tanda petik,
+          maka dia bukan lagi suatu nilai bilngan tapi berupa karakter.
+          Contoh variabel yang menggunak tipe data ini adalah JenisKelamin,
+          bisa “L” atau “P”, persetujuan bisa “Y” atau “N”, HurufDepanNama, dan sebagainya.
+      - chapter: Tipe Data Boolean
+        text: >
+          Boolean adalah tipe data yang digunakan untuk menyatakan status Benar atau Salah dari
+          suatau variabel. Jadi hanya dua nilai pada tipe data ini yaitu Benar dan Salah.
+
+
+          Sebagai contoh variabel yag dapat digunakan tipe data ini adalah: statusKelulusan
+          (bisa Benar atau Salah) dan statusMenikah (bisa benar atau salah).
+      - chapter: Tipe Data Bilangan real
+        text: >
+          Tipe data ini juga merupakan tipe data berupa bilangan, namun berbeda dengan tipe data
+          integer, yang termasuk tipe data ini adalah bilangan rasional pecahan atau irrasional,
+          atau bilangan yang disajikan dalam bentuk koma.
+          Sebagai contoh: 1.5, 458.543, -0.569, 22/7, Phi (π), √2 dan sebagainya.
+
+
+          Contoh variabel yang menggunakan tipe data ini, LuasLingkaran, Rerata,
+          VolumeTabung, suhu, dan sebagainya.
+      - chapter: Tipe Data Integer
+        text: >
+          Integer adalah tipe data berupa bilangan bulat, termasuk bilangan bulat negatif, nol ataupun
+          bulat positif, contohnya adalah 1, 488, -22, 0, 456, dan sebagainya.
+      - chapter: Contoh
+        text: |
+          [b]Algoritma JumlahKuadrat[/b]
+          [b]Input[/b]: A,B adalah bilangan bulat
+          [b]Output[/b]: C adalah bilangan bulat
+          [ol]
+          Masukkan nilai bilangan A
+          Masukkan nilai bilangan B
+          Hitung C=A^2 + B^2
+          Tuliskan hasil C
+          Selesai
+          [/ol]
+
+          Pada algoritma diatas, terdapat 3 buah variabel yaitu A, B, dan C.
+          Dimana A dan B merupakan variabel yang harus pengguna masukkan, dan C merupakan variabel yang diisi oleh algoritma itu sendiri.
+    quest:
+      - text: Berikut ini pernyataan yang benar menganai variabel, kecuali ....
+        answer:
+          - text: Digunakan untuk menyimpan nilai
+            correct: false
+          - text: Boleh diberikan nama dengan bebas
+            correct: false
+          - text: Boleh ada dua nama variabel yang sama
+            correct: true
+          - text: Digunakan untuk menyimpan nilai output
+            correct: false
+      - text: Keuntungan penggunaan varabel dalam algoritma adalah ....
+        answer:
+          - text: Penulisan langkah-langkah algoritma lebih efisien
+            correct: true
+          - text: Menghasilkan output yang benar
+            correct: false
+          - text: Mampu menyimpan input
+            correct: false
+          - text: Algoritma menjadi lebih pasti
+            correct: false
+      - text: Berikut ini variabel yang pasti memiki tipe data integer yaitu ....
+        answer:
+          - text: TotalGaji
+            correct: false
+          - text: NilaiTertinggi
+            correct: false
+          - text: JumlahAnak
+            correct: true
+          - text: PanjangBalok
+            correct: false
+      - text: Berikut ini variabel yang pasti mempunyai tipe data real yaitu ....
+        answer:
+          - text: Usia
+            correct: false
+          - text: JumlahAnak
+            correct: false
+          - text: TotalGaji
+            correct: true
+          - text: TahunLahir
+            correct: false
+      - text: Di antara variabel-variabel berikut memerlukan tipe data string, kecuali ....
+        answer:
+          - text: Alamat
+            correct: false
+          - text: NomorHP
+            correct: false
+          - text: Judulbuku
+            correct: false
+          - text: TahunLahir
+            correct: true
+
+  - id: 3
+    title: Operator
+    is_tutorial: false
+    content:
+      - chapter: Pengenalan
+        text: >
+          Dalam sebuah algoritma, input akan diproses dengan langkah-langkah yang sistematis
+          untuk mendapatkan output sesuai yang diharapkan. Dalam melakukan proses, tentu harus
+          memperhatikan tipe data yang digunakan.
+
+          Sebagai gambaran saja, tidak mungkin kita akan mengatakan “menggoreng air”,
+          karena kata kerja menggoreng tidak mungkin diterapkan pada air,
+          atau dalam dunia komputer misalkan tidak mungkin ada perintah “klik tombol enter” karena klik
+          hanya bekerja pada mouse, sedangkan tombol enter adalah tombol pada keyboard sehingga
+          perintah yang sesuai adalah “tekan”. Demikian juga dalam tipe-tipe data di atas, proses biasanya
+          dilakukan dengan operasi-operasi pada nilai menurut tipe data tertentu.
+      - chapter: Operator Aritmatika
+        text: >
+          Operator aritmatika adalah operasi hitung dari bilangan-bilangan. Terdapat dia macam tipe
+          data bilangan yaitu integer dan bilangan real. Operator-operator yang berlaku keduanya hampir
+          sama, kecuali untuk bagian pembagian.
+      - chapter: Tabel Operator Aritmatika
+        text: >
+          Berikut ini adalah operator-operator aritmatika yang dapat digunakan dalam algoritma pemrograman.
+
+          [table=3]
+          [cell border=black]Operator[/cell]
+          [cell border=black]Keterangan[/cell]
+          [cell border=black]Contoh[/cell]
+          [cell border=black]+[/cell]
+          [cell border=black]Menjumlahkan dua bilangan[/cell]
+          [cell border=black]7+3=10[/cell]
+          [cell border=black]-[/cell]
+          [cell border=black]Mengurangi bilangan pertama dengan bilangan kedua[/cell]
+          [cell border=black]7-3=4[/cell]
+          [cell border=black]x atau *[/cell]
+          [cell border=black]Mengalikan dua bilangan[/cell]
+          [cell border=black]7x3=21[/cell]
+          [cell border=black]Div[/cell]
+          [cell border=black]Membagi bilangan pertama dengan bilangan kedua, di mana hasilnya adalah bagian bulat dari hasil
+          pembagiannya, selanjutnya disebut pembagian bilangan bulat[/cell]
+          [cell border=black]7 div 3 = 2[/cell]
+          [cell border=black]Mod[/cell]
+          [cell border=black]Sisa bagi dari hasil pemebgaian bilangan bulat antara bilangan pertama dengan kedua[/cell]
+          [cell border=black]7 mod 3= 1 [/cell]
+          [/table]
+      - chapter: Operator Relasional
+        text: >
+          Dalam sebuah algoritma, terkadang diperlukan suatu persyaratan. Misalkan algoritma
+          menentukan akar persamaan kuadrat. Hasil akar persamaan kuadrat tergantung dengan nilai
+          diskriminan atau disingkat D. Jika D> 0 maka kedua akarnya bilangan real, jika D=0 maka akarnya
+          adalah akar tunggal , atau jika D<0 maka tidak mempunyai akar. Hasil dari pernyataan D>0 atau
+          D=0 atau D<0 akan adalah suatu keadaan yang bernilai benar atau salah. Pernyataaan tersebut
+          merupakan suatu hubungan antara dua buah variabel atau dua buah nilai.
+      - chapter: Table Operator Relasional
+        text: >
+          Berikut ini adalah operator-operator relasional yang dapat digunakan dalam algoritma pemrograman.
+
+          [table=3]
+            [cell border=black]Operator[/cell]
+            [cell border=black]Keterangan[/cell]
+            [cell border=black]Contoh[/cell]
+            [cell border=black]==[/cell]
+            [cell border=black]Periksa apakah nilai keduanya sama[/cell]
+            [cell border=black]a==10, periksa apakah nilai variabel a sama dengan 10[/cell]
+            [cell border=black]<>[/cell]
+            [cell border=black]Periksa apakah nilai keduanya tidak sama[/cell]
+            [cell border=black]a<>10, periksa apakah nilai variabel a tidak sama dengan 10[/cell]
+            [cell border=black]>[/cell]
+            [cell border=black]Periksa apakah nilai pertama lebih besar dari nilai kedua[/cell]
+            [cell border=black]a>10, periksa apakah nilai variabel a lebih besar dari 10[/cell]
+            [cell border=black]<[/cell]
+            [cell border=black]Periksa apakah nilai pertama lebih keci dari nilai kedua[/cell]
+            [cell border=black]a<10, periksa apakah nilai variabel a lebih kecil dari 10[/cell]
+            [cell border=black]>=[/cell]
+            [cell border=black]Periksa apakah nilai pertama lebih besar atau sama dengan nilai kedua[/cell]
+            [cell border=black]a>=10, periksa apakah nilai variabel a lebih besar atau sama dengan 10[/cell]
+            [cell border=black]<=[/cell]
+            [cell border=black]Periksa apakah nilai pertama lebih kecil atau sama dengan nilai kedua[/cell]
+            [cell border=black]A<10, periksa apakah nilai variabel a lebih kecil atau sama dengan 10 [/cell]
+          [/table]
+      - chapter: Operator Boolean
+        text: >
+          Banyak algoritma yang dalam prosesnya menyatakan lebih dari satu persayaratan. Sebagai contoh
+          di berbagai bentuk algoritma dalam kehidupan sehari-hari.
+
+          Contohnya seperti.
+
+          [ul]
+
+          Jika puding telah dingin dan padat
+
+          Jika komputer tidak bisa booting dan terdengar bunyi beep sekali maka ....
+
+          Selama koneksi internet tidak putus atau server tidak mati lakukan ....
+
+          Cuci hingga bersih dan wangi
+
+          Dan sebagainya
+
+          [/ul]
+      - chapter: Table Operator Boolean
+        text: >
+          Penggabungan pernyataan yang bernilai benar atau salah (data boolean) seperti ini dapat
+          dilakukan dengan mengunakan operator-operator boolean sebagai berikut.
+
+          [table=3]
+            [cell border=black]Operator[/cell]
+            [cell border=black]Keterangan[/cell]
+            [cell border=black]Contoh[/cell]
+            [cell border=black]AND[/cell]
+            [cell border=black]Jika kedua pernytaan yang dihubungakn bernilai benar maka
+            hasilnya adalah benar, jika salah satu saja salah maka hasilnya adalah salah [/cell]
+            [cell border=black](D<0) AND (a>0), artinya D kurang dari 0 dan a lebih dari 0[/cell]
+            [cell border=black]OR[/cell]
+            [cell border=black]Jika salah satu saja pernytaan benar maka hasilnya adalah
+            benar, jika keduanya salah maka hasilnya akan salah[/cell]
+            [cell border=black](Umur>=60) OR (Umur<=6), artinya jika umur lebih besar
+            atau sama dengan 60 atau kurang dari atau sama dengan 6[/cell]
+            [cell border=black]NOT[/cell]
+            [cell border=black]Digunakan untuk membalikkan nilai kebenaran (ingkaran), jika
+            pernytaan bernilai benar maka akan menjadi salah dan sebaliknya jika pernytaan
+            salah akan menjadi benar[/cell]
+            [cell border=black]NOT(Profesi==”guru”), artinya Profesinya selain guru [/cell]
+          [/table]
+    quest:
+      - text: Operasi 22 MOD 4 memberikan hasil ....
+        answer:
+          - text: "5"
+            correct: false
+          - text: "5.5"
+            correct: false
+          - text: "2"
+            correct: true
+          - text: "false"
+            correct: false
+          - text: "true"
+            correct: false
+      - text: Ekspresi bilangan real 4 + 2*(6+9/3) memberikan nilai....
+        answer:
+          - text: "10"
+            correct: false
+          - text: "20"
+            correct: true
+          - text: "22"
+            correct: false
+          - text: "24"
+            correct: false
+      - text: >
+          Diketahui a, b, c adalah variabel dengan tipe data boolean,
+          di mana a =FALSE, b=TRUE dan c=TRUE. 
+
+          Di antara jawaban berikut yang memberikan hasil yang TRUE adalah ...
+        answer:
+          - text: (a AND b) AND c
+            correct: false
+          - text: (a AND b) OR NOT(C)
+            correct: false
+          - text: (A OR B) AND NOT(c)
+            correct: false
+          - text: (A OR B) OR NOT(c)
+            correct: true
+      - text: |
+          Jika P merupakan variabel bertipe boolean dan diberikan suatu assignment seperti berikut P=(5>9)
+          manakah kesimpulan yang benar mengenai assignemnt di atas?
+        answer:
+          - text: P tidak bisa mempunyai nilai karean kesalhan penggunaan operator
+            correct: false
+          - text: P bernilai benar
+            correct: true
+          - text: P bernilai salah
+            correct: false
+          - text: P tidak boleh bertipe boolean
+            correct: false

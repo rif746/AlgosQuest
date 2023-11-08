@@ -86,7 +86,7 @@ exit_door = NodePath("ExitDoor")
 computer = NodePath("Computer")
 portal = NodePath("Portal")
 use_light = true
-stage_time = 200
+stage_time = 10
 top_left_camera_limit = NodePath("TopLeft")
 bottom_right_camera_limit = NodePath("BottomRight")
 

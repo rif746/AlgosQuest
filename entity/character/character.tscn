@@ -5,10 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://dcahj54tem85s" path="res://assets/sprites/lights.png" id="3_60far"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sn8ef"]
-radius = 5.0
-height = 10.0
+radius = 7.0
+height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gh78y"]
+radius = 12.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jpudq"]
 light_mode = 1
@@ -253,7 +254,7 @@ shape = SubResource("CircleShape2D_gh78y")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 material = SubResource("CanvasItemMaterial_jpudq")
 position = Vector2(-5.00003, 4.50001)
-scale = Vector2(5, 5)
+scale = Vector2(9.0375, 7.69375)
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)

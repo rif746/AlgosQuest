@@ -99,6 +99,7 @@ root_node = NodePath("../HUDCanvas/HUD")
 process_callback = 0
 
 [node name="HUDCanvas" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="HUD" type="Control" parent="HUDCanvas"]
 layout_mode = 3
@@ -199,8 +200,10 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
-[connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="learn" from="HUDCanvas/ProgressPanel" to="." method="_on_progress_panel_learn"]
+[connection signal="timeout" from="StageTimer" to="." method="_on_timeout"]
+[connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause"]
+[connection signal="restart_game" from="HUDCanvas/PauseUI" to="." method="_on_restart_game"]
+[connection signal="restart_game" from="HUDCanvas/GameOverUI" to="." method="_on_restart_game"]
+[connection signal="learn" from="HUDCanvas/ProgressPanel" to="." method="_on_learn"]
 
 [editable path="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController"]

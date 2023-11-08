@@ -1,18 +1,21 @@
 extends CanvasLayer
 
 var path_history: Array[String]
+@onready var exit_panel = $ExitPanel
+@onready var animation_player = $scene_changer/AnimationPlayer
+
 
 func change_scene(scene):
-	$AnimationPlayer.play("dissolve")
+	animation_player.play("dissolve")
 	make_history_scene(scene)
-	await $AnimationPlayer.animation_finished
+	await animation_player.animation_finished
 	
 	if scene is PackedScene:
 		get_tree().change_scene_to_packed(scene)
 	else:
 		get_tree().change_scene_to_file(scene)
 		
-	$AnimationPlayer.play_backwards("dissolve")
+	animation_player.play_backwards("dissolve")
 
 
 func make_history_scene(scene):
@@ -34,9 +37,9 @@ func back_to_previous_scene():
 
 
 func change_scene_with_callback(scene, callback: Callable):
-	$AnimationPlayer.play("dissolve")
+	animation_player.play("dissolve")
 	make_history_scene(scene)
-	await $AnimationPlayer.animation_finished
+	await animation_player.animation_finished
 	
 	if scene is PackedScene:
 		get_tree().current_scene.queue_free()
@@ -51,4 +54,18 @@ func change_scene_with_callback(scene, callback: Callable):
 		get_tree().get_root().add_child(scene)		
 		get_tree().set_current_scene(scene)
 		
-	$AnimationPlayer.play_backwards("dissolve")
+	animation_player.play_backwards("dissolve")
+
+
+# pause game and show menu
+func pause_game(ui: Node = null):
+	get_tree().paused = true
+	if ui:
+		ui.show()
+
+
+# unpause game and hide menu
+func resume_game(ui: Node = null):
+	get_tree().paused = false
+	if ui:
+		ui.hide()

@@ -26,7 +26,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.235294, 0.305882, 0.454902, 1)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="OptionPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.252778
@@ -41,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_jdir4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,26 +51,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="OptionPanel/VBoxContainer"]
 layout_mode = 2
 text = "Options"
 label_settings = ExtResource("3_jfbo0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+[node name="OptionContainer" type="GridContainer" parent="OptionPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/h_separation = 49
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="BGMLabel" type="Label" parent="Panel/VBoxContainer/GridContainer"]
+[node name="BGMLabel" type="Label" parent="OptionPanel/VBoxContainer/OptionContainer"]
 layout_mode = 2
 text = "BGM"
 label_settings = ExtResource("4_7k06w")
 
-[node name="BGMSlider" type="HSlider" parent="Panel/VBoxContainer/GridContainer"]
+[node name="BGMSlider" type="HSlider" parent="OptionPanel/VBoxContainer/OptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -77,12 +78,12 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="SFXLabel" type="Label" parent="Panel/VBoxContainer/GridContainer"]
+[node name="SFXLabel" type="Label" parent="OptionPanel/VBoxContainer/OptionContainer"]
 layout_mode = 2
 text = "SFX"
 label_settings = ExtResource("4_7k06w")
 
-[node name="SFXSlider" type="HSlider" parent="Panel/VBoxContainer/GridContainer"]
+[node name="SFXSlider" type="HSlider" parent="OptionPanel/VBoxContainer/OptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -90,24 +91,24 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="PlayerNameLabel" type="Label" parent="Panel/VBoxContainer/GridContainer"]
+[node name="PlayerNameLabel" type="Label" parent="OptionPanel/VBoxContainer/OptionContainer"]
 layout_mode = 2
 text = "Player Name"
 label_settings = ExtResource("4_7k06w")
 
-[node name="PlayerName" type="LineEdit" parent="Panel/VBoxContainer/GridContainer"]
+[node name="PlayerName" type="LineEdit" parent="OptionPanel/VBoxContainer/OptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "test"
 
-[node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="OptionPanel/VBoxContainer"]
 layout_mode = 2
 text = "Save"
 
 [node name="sfx_control" parent="." instance=ExtResource("5_eocg6")]
-root_node = NodePath("../Panel")
+root_node = NodePath("../OptionPanel")
 
-[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/GridContainer/PlayerName" to="." method="_on_player_name_text_changed"]
-[connection signal="pressed" from="Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="value_changed" from="OptionPanel/VBoxContainer/OptionContainer/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="OptionPanel/VBoxContainer/OptionContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="text_changed" from="OptionPanel/VBoxContainer/OptionContainer/PlayerName" to="." method="_on_player_name_text_changed"]
+[connection signal="pressed" from="OptionPanel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

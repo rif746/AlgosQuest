@@ -44,8 +44,13 @@ func load_stage():
 		current_stage = load(stage).instantiate()
 	
 	current_stage.item_interaction.connect(virtual_controller.toggle_interact_button)
-	StageManager.object_loaded.connect(virtual_controller.toggle_progress_button)
-	StageManager.game_over.connect(_on_stage_timer_timeout)
+	current_stage.stage_clear.connect(_on_stage_cleared)
+	if !StageManager.object_loaded.is_connected(virtual_controller.toggle_progress_button):
+		StageManager.object_loaded.connect(virtual_controller.toggle_progress_button)
+	if !StageManager.game_over.is_connected(_on_timeout):
+		StageManager.game_over.connect(_on_timeout)
+	if !StageManager.pause_game.is_connected(_on_pause):
+		StageManager.pause_game.connect(_on_pause)
 	
 	add_child(current_stage)
 
@@ -64,7 +69,7 @@ func get_random_world_file():
 		if file == "":
 			break
 		elif not file.begins_with("."):
-			files.append(file)
+			files.append("res://world/main/%s" % file)
 
 	dir.list_dir_end()
 
@@ -73,21 +78,23 @@ func get_random_world_file():
 
 func _on_stage_cleared():
 	SaveLoad.stage_clear(StageManager.stage_data.id)
-	GameSystem.pause_game(game_clear_ui)
+	StageLoader.stage_unlocked(StageManager.stage_data.id)
+	StageLoader.stage_cleared(StageManager.stage_data.id)
+	SceneChanger.pause_game(game_clear_ui)
 	
 
-func _on_stage_timer_timeout():
-	GameSystem.pause_game(game_over_ui)
+func _on_timeout():
+	SceneChanger.pause_game(game_over_ui)
 
 
-func _on_pause_button_pressed():
-	GameSystem.pause_game(pause_ui)
+func _on_pause(node = pause_ui):
+	SceneChanger.pause_game(node)
 
 
-func _on_game_over_ui_restart_game():
+func _on_restart_game():
 	load_stage()
 
 
-func _on_progress_panel_learn(title, content):
+func _on_learn(title, content):
 	learning_panel.show()
 	learning_panel.install_window(title, content)
