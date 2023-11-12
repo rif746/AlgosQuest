@@ -42,7 +42,6 @@ func load_stage():
 	
 	if (StageManager.is_tutorial_stage):
 		current_stage = load(TUTORIAL_WORLD).instantiate()
-		tutorial_panel.show()
 	else:
 		var stage = get_random_world_file()
 		current_stage = load(stage).instantiate()
@@ -62,6 +61,8 @@ func load_stage():
 	
 	add_child(current_stage)
 
+	tutorial_panel.visible = StageManager.is_tutorial_stage
+	
 	# start game timer
 	stage_timer.set_wait_time(current_stage.stage_time)
 	stage_timer.start()

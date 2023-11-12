@@ -8,10 +8,9 @@ func set_information(title: String, content: String):
 	title_label.set_text(title)
 	content_label.clear()
 	content_label.append_text(content)
-	StageManager.open_info_panel.emit(title, content)
 
 func _on_close_button_pressed():
 	hide()
 
-func _on_hidden():
-	StageManager.close_info_panel.emit(title_label.text)
+func _on_visibility_changed():
+	StageManager.panel_visibility_changed.emit(visible)

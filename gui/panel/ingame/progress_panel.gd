@@ -39,3 +39,7 @@ func _on_object_found(chapter):
 
 func _on_close_button_pressed():
 	hide()
+
+
+func _on_visibility_changed():
+	StageManager.panel_visibility_changed.emit(visible)

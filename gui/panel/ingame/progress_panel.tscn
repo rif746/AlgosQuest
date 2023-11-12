@@ -77,4 +77,5 @@ text = "x"
 [node name="sfx_control" parent="." instance=ExtResource("4_gahnj")]
 root_node = NodePath("../Panel")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

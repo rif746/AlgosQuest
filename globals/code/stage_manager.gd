@@ -11,6 +11,7 @@ signal object_found(String)
 signal open_info_panel(title: String, info: String)
 signal toggle_info_panel(title: String, info: String)
 signal close_info_panel(title: String)
+signal panel_visibility_changed(bool)
 signal change_quest_time(time: int)
 
 var stage_data: StageData:

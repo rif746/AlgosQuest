@@ -94,6 +94,8 @@ func _on_timer_timeout():
 	StageManager.game_over.emit()
 
 
-func _on_hidden():
-	timer.stop()
-	SceneChanger.resume_game(self)
+func _on_visibility_changed():
+	StageManager.panel_visibility_changed.emit(visible)
+	if !visible && timer:
+		timer.stop()
+		SceneChanger.resume_game(self)

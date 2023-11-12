@@ -114,6 +114,6 @@ root_node = NodePath("../Panel")
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -14,11 +14,13 @@ const MAX_SPEED = 75
 var item_function: Callable
 var item_list: Array
 var input_direction: Vector2 = Vector2.ZERO
+var interacted_with_item: bool = false
 
 signal item_interaction(detected: bool)
 
 func _ready():
 	player_movement()
+	StageManager.panel_visibility_changed.connect(_on_panel_visibility_changed)
 
 func _process(_delta):
 	point_light_2d.enabled = use_light
@@ -28,9 +30,10 @@ func _process(_delta):
 	if (Input.is_action_just_pressed("ui_accept")) && item_function.is_valid():
 		item_function.call()
 	
-	player_movement()
-	velocity = input_direction * (MAX_SPEED)
-	move_and_slide()
+	if !interacted_with_item:
+		player_movement()
+		velocity = input_direction * (MAX_SPEED)
+		move_and_slide()
 
 
 func set_camera_limit(top_left: Vector2, bottom_right: Vector2):
@@ -61,3 +64,7 @@ func _on_item_detector_body_entered(body):
 func _on_item_detector_body_exited(_body):
 	item_function = func(): pass
 	item_interaction.emit(false)
+
+
+func _on_panel_visibility_changed(visibility):
+	interacted_with_item = visibility
