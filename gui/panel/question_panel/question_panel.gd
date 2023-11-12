@@ -4,9 +4,9 @@ extends Control
 @onready var answer_grid = %AnswerGrid
 @onready var answer_list = %AnswerList
 @onready var sfx_control = $sfx_control
-@onready var point_label = %PointLabel
 @onready var timer = $Timer
 @onready var timer_label = %TimerLabel
+@onready var quest_label = %QuestLabel
 
 var quest: Array[Quest]
 var question_loaded: int = 0
@@ -34,6 +34,7 @@ func install_question(_quest: Array[Quest]):
 
 
 func load_question():
+	quest_label.set_text("Quest %d of %d" % [question_loaded + 1, quest.size()])
 	content_label.clear()
 	content_label.add_text(quest[question_loaded].text)
 	clear_answer_button()
@@ -57,6 +58,7 @@ func load_answer(answers: Array[QuestAnswer]):
 		button.set_custom_minimum_size(Vector2(150, 40))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.button_group = button_group
+		button.mouse_filter = button.MOUSE_FILTER_PASS
 		button.toggle_mode = true
 		button.set_text(answer.text)
 		answer_grid.add_child(button)
@@ -66,8 +68,10 @@ func load_answer(answers: Array[QuestAnswer]):
 func _on_answer_button_pressed(button: Button):
 	var correct = button.get_meta("correct")
 	if not correct:
-		#point_label.set_text(str(StageManager.question_correct * (100/quest.size())))
-		timer.start(timer.time_left - 30)
+		var time = timer.time_left - 30;
+		if time < 1:
+			timer.timeout.emit()
+		timer.start(time)
 	StageManager.question_answered.push_back(quest[question_loaded].text)
 	if question_loaded != quest.size()-1:
 		question_loaded += 1

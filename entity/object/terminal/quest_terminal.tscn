@@ -1,12 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://dppydbmfly7xy"]
+[gd_scene load_steps=11 format=3 uid="uid://dppydbmfly7xy"]
 
 [ext_resource type="Script" path="res://entity/object/terminal/quest_terminal.gd" id="1_etp7c"]
 [ext_resource type="Texture2D" uid="uid://egeymd18ute" path="res://assets/sprites/doodads_spritesheet.png" id="1_skdit"]
 [ext_resource type="PackedScene" uid="uid://b6vouogbmd2us" path="res://gui/panel/question_panel/question_panel.tscn" id="3_xhbim"]
+[ext_resource type="Texture2D" uid="uid://c40yn63jba04y" path="res://assets/sprites/alert/emote_00.png" id="4_kvqum"]
+[ext_resource type="Texture2D" uid="uid://b30wbv5pire0n" path="res://assets/sprites/alert/emote_01.png" id="5_2vbiy"]
+[ext_resource type="Texture2D" uid="uid://dqkav1jv7guqm" path="res://assets/sprites/alert/emote_02.png" id="6_rir64"]
+[ext_resource type="Texture2D" uid="uid://b6xa1kcf72kkn" path="res://assets/sprites/alert/emote_03.png" id="7_6gkb5"]
+[ext_resource type="Texture2D" uid="uid://cqanbspt1cu4n" path="res://assets/sprites/alert/emote_04.png" id="8_fjwbh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_to2ue"]
 radius = 8.0
 height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fr2mk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kvqum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2vbiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rir64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6gkb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fjwbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6gkb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rir64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2vbiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kvqum")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="QuestTerminal" type="StaticBody2D"]
 collision_layer = 0
@@ -29,3 +69,11 @@ layer = 4
 
 [node name="QuestionPanel" parent="CanvasLayer" instance=ExtResource("3_xhbim")]
 visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 5)
+scale = Vector2(0.09375, 0.09375)
+sprite_frames = SubResource("SpriteFrames_fr2mk")
+autoplay = "default"
+frame_progress = 0.102758

@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=3 uid="uid://dos7lh1mveb3q"]
+
+[ext_resource type="Script" path="res://gui/game/controller_helper.gd" id="1_0dtq0"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="1_vkfb3"]
+[ext_resource type="Texture2D" uid="uid://b6qvcuwrhjuwe" path="res://assets/sprites/controller/button_normal.png" id="2_ew2pg"]
+[ext_resource type="Texture2D" uid="uid://dyn6dq7x4gf7n" path="res://assets/sprites/controller/button_pressed.png" id="3_hxluh"]
+[ext_resource type="Texture2D" uid="uid://6273nlcvae3v" path="res://assets/sprites/controller/button_progress_normal.png" id="5_lvwbj"]
+[ext_resource type="Texture2D" uid="uid://i6k2p5wg104y" path="res://assets/sprites/controller/button_progress_pressed.png" id="6_oug7k"]
+[ext_resource type="Texture2D" uid="uid://ckremyumuj4id" path="res://assets/sprites/controller/Keyboard Extras.png" id="7_6yvqg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noyp8"]
+atlas = ExtResource("7_6yvqg")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s511"]
+atlas = ExtResource("7_6yvqg")
+region = Rect2(96, 80, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vt1mi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noyp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s511")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ControllerHelper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0dtq0")
+
+[node name="VirtualJoystick" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -145.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="VirtualJoystick"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftAnalog" parent="VirtualJoystick/Control" instance=ExtResource("1_vkfb3")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 2.0
+offset_top = -46.0
+offset_right = 199.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+visibility_mode = 1
+
+[node name="ActionButton" type="Control" parent="VirtualJoystick"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InteractButton" type="TouchScreenButton" parent="VirtualJoystick/ActionButton"]
+unique_name_in_owner = true
+position = Vector2(192, 41)
+texture_normal = ExtResource("2_ew2pg")
+texture_pressed = ExtResource("3_hxluh")
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="ProgressButton" type="TouchScreenButton" parent="VirtualJoystick/ActionButton"]
+unique_name_in_owner = true
+position = Vector2(268, -50)
+texture_normal = ExtResource("5_lvwbj")
+texture_pressed = ExtResource("6_oug7k")
+action = "ui_select"
+visibility_mode = 1
+
+[node name="KeyboardHelper" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ProgressHelper" type="Control" parent="KeyboardHelper"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 132.0
+offset_right = 480.0
+offset_bottom = 172.0
+
+[node name="Sptrite2D" type="Sprite2D" parent="KeyboardHelper/ProgressHelper"]
+position = Vector2(72, -8)
+scale = Vector2(1.70703, 1.59375)
+texture = ExtResource("7_6yvqg")
+hframes = 4
+vframes = 8
+frame = 10
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="KeyboardHelper/ProgressHelper"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 39.0
+offset_bottom = 2.0
+text = "Tekan	"
+metadata/_edit_group_ = true
+
+[node name="Label2" type="Label" parent="KeyboardHelper/ProgressHelper"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = -24.0
+offset_right = 427.0
+offset_bottom = 2.0
+text = "Untuk Menampilkan Materi Yang didapat "
+metadata/_edit_group_ = true
+
+[node name="InteractionHelper" type="AnimatedSprite2D" parent="KeyboardHelper"]
+unique_name_in_owner = true
+position = Vector2(640, 84)
+scale = Vector2(1.71875, 2.375)
+sprite_frames = SubResource("SpriteFrames_vt1mi")
+autoplay = "default"
+frame_progress = 0.457056

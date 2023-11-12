@@ -35,10 +35,10 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=720
 window/size/viewport_height=400
-window/size/mode=3
 window/size/extend_to_title=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 
 [input]
 
@@ -49,12 +49,9 @@ ui_accept={
 ]
 }
 
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -3,10 +3,14 @@ extends Node
 signal life_count_changed(count: int)
 signal game_over()
 signal can_answer_question()
-signal pause_game(panel)
+signal pause_game(panel: Control)
 signal exit_door_open()
-signal object_found(id)
+signal update_object_information(object_found: int, object_available: int)
 signal object_loaded()
+signal object_found(String)
+signal open_info_panel(title: String, info: String)
+signal toggle_info_panel(title: String, info: String)
+signal close_info_panel(title: String)
 signal change_quest_time(time: int)
 
 var stage_data: StageData:
@@ -26,13 +30,18 @@ var life_count: int:
 		life_count = count
 var object_ready: bool:
 	set(loaded):
-		object_loaded.emit(loaded)
+		object_loaded.emit()
 		object_ready = loaded
-var object_count: int
+var object_count: int:
+	set(count):
+		update_object_information.emit(object_found_count, count)
+		object_count = count
+
 var object_found_count: int:
 	set(count):
 		if(count == object_count):
 			can_answer_question.emit()
+		update_object_information.emit(count, object_count)
 		object_found_count = count
 
 var question_answered: Array[String]

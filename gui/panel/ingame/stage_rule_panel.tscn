@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp81gvvapn7xq"]
+[gd_scene load_steps=5 format=3 uid="uid://dk1x6bbfh44om"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_60hfx"]
-[ext_resource type="Script" path="res://gui/panel/ingame/stage_rule_panel.gd" id="1_ud21g"]
 [ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_7gcpb"]
 [ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="3_wnjur"]
+
+[sub_resource type="GDScript" id="GDScript_pythp"]
+script/source = "extends Control
+
+@onready var title = %Title
+@onready var list_container = %ListContainer
+
+signal close_window()
+
+func install_rule(_title: String, rules: Array[String]):
+		title.text = _title
+		var num = 1
+		for rule in rules:
+			var label = Label.new()
+			label.text = \"%d. %s\" % [num, rule]
+			label.label_settings = load(\"res://assets/resource/theme/label_settings/content_small.tres\")
+			label.autowrap_mode = TextServer.AUTOWRAP_WORD
+			list_container.add_child(label)
+			num += 1
+
+
+func _on_close_button_pressed():
+	visible = false
+"
 
 [node name="StageRulePanel" type="Control"]
 layout_mode = 3
@@ -12,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ud21g")
+script = SubResource("GDScript_pythp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

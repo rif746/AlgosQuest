@@ -1,21 +1,27 @@
 extends StaticBody2D
 class_name Computer
 
-@onready var stage_rule_panel = %StageRulePanel
+var stage_data: StageData
+
+signal window_close()
 
 
-func install_computer(stage_data: StageData):
-	var rules: Array[String] = []
-	rules.append("Terdapat %d objek yang tersebar." % stage_data.content.size())
-	rules.append("Objek tersebut berisi pecahan materi %s." % stage_data.title)
-	rules.append("Telusuri dungeon dan temukan semua objek tersebut.")
-	rules.append("Setelah semua objek ditemukan, pergi ke pintu keluar dan selesaikan kuis yang tersedia.")
-	rules.append("Permainan akan berakhir jika pemain berhasil keluar atau waktu permainan habis.")
-	stage_rule_panel.install_rule(stage_data.title, rules)
+func _ready():
+	stage_data = StageManager.stage_data
+	StageManager.close_info_panel.connect(_on_close_info_panel)
+
 
 func interaction():
-	stage_rule_panel.visible = !stage_rule_panel.visible
+	var rules: String
+	rules = "[ul]"
+	rules += "Terdapat %d objek yang tersebar.\n" % stage_data.content.size()
+	rules += "Objek tersebut berisi pecahan materi %s.\n" % stage_data.title
+	rules += "Telusuri dungeon dan temukan semua objek tersebut.\n"
+	rules += "Setelah semua objek ditemukan, pergi ke pintu keluar dan selesaikan kuis yang tersedia.\n"
+	rules += "Permainan akan berakhir jika pemain berhasil keluar atau waktu permainan habis.\n"
+	rules += "[/ul]"
+	StageManager.toggle_info_panel.emit(stage_data.title, rules)
 
 
-func _on_panel_hidden():
+func _on_close_info_panel(_title):
 	StageManager.object_ready = true

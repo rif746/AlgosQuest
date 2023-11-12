@@ -9,7 +9,10 @@ class_name HUDControl
 @onready var game_clear_ui = $HUDCanvas/GameClearUI
 @onready var progress_panel = $HUDCanvas/ProgressPanel
 @onready var virtual_controller = %VirtualController
-@onready var learning_panel = %LearningPanel
+@onready var tutorial_panel = $HUDCanvas/TutorialPanel
+@onready var information_panel = %InformationPanel
+@onready var progress_label = %ProgressLabel
+@onready var progress_separator = %ProgressSeparator
 
 var current_stage: World
 
@@ -39,18 +42,23 @@ func load_stage():
 	
 	if (StageManager.is_tutorial_stage):
 		current_stage = load(TUTORIAL_WORLD).instantiate()
+		tutorial_panel.show()
 	else:
 		var stage = get_random_world_file()
 		current_stage = load(stage).instantiate()
 	
 	current_stage.item_interaction.connect(virtual_controller.toggle_interact_button)
 	current_stage.stage_clear.connect(_on_stage_cleared)
-	if !StageManager.object_loaded.is_connected(virtual_controller.toggle_progress_button):
-		StageManager.object_loaded.connect(virtual_controller.toggle_progress_button)
+	if !StageManager.object_loaded.is_connected(_on_object_loaded):
+		StageManager.object_loaded.connect(_on_object_loaded)
 	if !StageManager.game_over.is_connected(_on_timeout):
 		StageManager.game_over.connect(_on_timeout)
 	if !StageManager.pause_game.is_connected(_on_pause):
 		StageManager.pause_game.connect(_on_pause)
+	if !StageManager.toggle_info_panel.is_connected(_on_learn):
+		StageManager.toggle_info_panel.connect(_on_learn)
+	if !StageManager.update_object_information.is_connected(_on_update_object_information):
+		StageManager.update_object_information.connect(_on_update_object_information)
 	
 	add_child(current_stage)
 
@@ -72,8 +80,8 @@ func get_random_world_file():
 			files.append("res://world/main/%s" % file)
 
 	dir.list_dir_end()
-
-	return files.pick_random()
+	
+	return files.pick_random().trim_suffix(".remap")
 
 
 func _on_stage_cleared():
@@ -84,6 +92,10 @@ func _on_stage_cleared():
 	
 
 func _on_timeout():
+	pause_ui.hide();
+	game_clear_ui.hide();
+	progress_panel.hide();
+	information_panel.hide();
 	SceneChanger.pause_game(game_over_ui)
 
 
@@ -96,5 +108,15 @@ func _on_restart_game():
 
 
 func _on_learn(title, content):
-	learning_panel.show()
-	learning_panel.install_window(title, content)
+	information_panel.visible = !information_panel.visible
+	information_panel.set_information(title, content)
+
+
+func _on_object_loaded():
+	virtual_controller.toggle_progress_button(true)
+
+
+func _on_update_object_information(found: int, available: int):
+	progress_separator.show()
+	progress_label.show()
+	progress_label.set_text("Object %d of %d" % [found, available])

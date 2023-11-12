@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://br3fx1tn404b1"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_2b6re"]
-[ext_resource type="Script" path="res://gui/panel/learning_panel/learning_panel.gd" id="2_rhhem"]
+[ext_resource type="Script" path="res://gui/panel/information_panel/information_panel.gd" id="2_rhhem"]
 [ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="3_12hyj"]
 [ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="4_ddryc"]
 
-[node name="LearningPanel" type="Control"]
+[node name="InformationPanel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,4 +91,5 @@ text = "x"
 [node name="sfx_control" parent="." instance=ExtResource("4_ddryc")]
 root_node = NodePath("../Panel")
 
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

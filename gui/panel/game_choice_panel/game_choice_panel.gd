@@ -30,5 +30,5 @@ func _on_read_button_pressed():
 		content += "[font size=18][b]%s[/b][/font]\n" % _content.chapter
 		content += "[font size=14]%s[/font]\n\n" % _content.text
 	
-	learning_panel.install_window(title, content);
+	learning_panel.set_information(title, content);
 	learning_panel.show()

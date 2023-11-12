@@ -85,8 +85,7 @@ entrance_door = NodePath("EntranceDoor")
 exit_door = NodePath("ExitDoor")
 computer = NodePath("Computer")
 portal = NodePath("Portal")
-use_light = true
-stage_time = 10
+stage_time = 480
 top_left_camera_limit = NodePath("TopLeft")
 bottom_right_camera_limit = NodePath("BottomRight")
 
@@ -155,3 +154,5 @@ position = Vector2(755, 366)
 
 [node name="QuestTerminal" parent="." instance=ExtResource("9_xoxcy")]
 position = Vector2(483, -88)
+
+[connection signal="window_close" from="Computer" to="." method="_on_computer_window_closed"]

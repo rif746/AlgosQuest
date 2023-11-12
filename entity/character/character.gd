@@ -9,6 +9,7 @@ const MAX_SPEED = 75
 @onready var animation_player = $AnimationPlayer
 @onready var point_light_2d = $PointLight2D
 @onready var camera: Camera2D = $Camera2D
+@onready var canvas_modulate = $CanvasModulate
 
 var item_function: Callable
 var item_list: Array
@@ -21,6 +22,7 @@ func _ready():
 
 func _process(_delta):
 	point_light_2d.enabled = use_light
+	canvas_modulate.visible = use_light
 	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
 	if (Input.is_action_just_pressed("ui_accept")) && item_function.is_valid():

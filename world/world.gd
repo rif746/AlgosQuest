@@ -10,16 +10,14 @@ class_name World
 @export var portal: Portal
 @export var use_light: bool
 @export var stage_time: int
-@export var top_left_camera_limit: Marker	2D
+@export var top_left_camera_limit: Marker2D
 @export var bottom_right_camera_limit: Marker2D
 
 signal item_interaction(detected: bool)
 signal stage_clear()
 
 func _ready():
-	load_computer_window_content()
 	initialize_object()
-	pass
 
 
 func initialize_object():
@@ -35,28 +33,21 @@ func initialize_object():
 	StageManager.exit_door_open.connect(_on_quest_cleared)
 	StageManager.object_loaded.connect(_on_computer_window_closed)
 
-func load_computer_window_content():	
-	computer.install_computer(StageManager.stage_data)
 
-
-func load_key():
-	for mission in StageManager.object:
-		var spawned = object_spawner.spawn(load("res://entity/object/flashdisk/flashdisk.tscn"))
-		if spawned == null:
-			break
-		spawned.title = mission.chapter
-		spawned.content = mission.text
-		spawned.load_content()
-		StageManager.object_count += 1
+func _on_computer_window_closed():
+	if StageManager.object_count == 0:
+		for mission in StageManager.object:
+			var spawned = object_spawner.spawn(load("res://entity/object/flashdisk/flashdisk.tscn"))
+			if spawned == null:
+				break
+			spawned.title = mission.chapter
+			spawned.content = mission.text
+			StageManager.object_count += 1
 	StageManager.life_count = get_meta("life_count", 3)
+	entrance_door.open_door()
 
 func _on_item_interaction(detected: bool):
 	item_interaction.emit(detected)
-
-
-func _on_computer_window_closed(_loaded):
-	entrance_door.open_door()
-	load_key()
 
 
 func _on_portal_game_clear():

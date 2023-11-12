@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvjyq06iqdqso"]
+[gd_scene load_steps=18 format=3 uid="uid://cvjyq06iqdqso"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_f423e"]
 [ext_resource type="LabelSettings" uid="uid://c5cu2jfhxu476" path="res://assets/resource/theme/label_settings/content_small.tres" id="2_d3yd1"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_4lra4"]
 [ext_resource type="PackedScene" uid="uid://bm0r2yd52g2cl" path="res://gui/panel/ingame/pause_panel.tscn" id="5_2vh43"]
 [ext_resource type="Texture2D" uid="uid://d1yaj44wj46xy" path="res://assets/sprites/heart.png" id="5_r1mb0"]
-[ext_resource type="PackedScene" uid="uid://dos7lh1mveb3q" path="res://gui/game/virtual_controller.tscn" id="6_ewse6"]
+[ext_resource type="PackedScene" uid="uid://dos7lh1mveb3q" path="res://gui/game/controller_helper.tscn" id="6_ewse6"]
 [ext_resource type="PackedScene" uid="uid://cjtqpvltajqhc" path="res://gui/panel/ingame/game_clear_panel.tscn" id="6_jogip"]
 [ext_resource type="PackedScene" uid="uid://c1auf0eh7bx3d" path="res://gui/panel/ingame/game_over_panel.tscn" id="7_l7rfu"]
 [ext_resource type="PackedScene" uid="uid://cx54n5rmbbsff" path="res://gui/panel/ingame/progress_panel.tscn" id="10_hv5dv"]
-[ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/learning_panel/learning_panel.tscn" id="11_3oy1x"]
+[ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/information_panel/information_panel.tscn" id="11_3oy1x"]
+[ext_resource type="PackedScene" uid="uid://c74seqxlj4dhj" path="res://gui/panel/ingame/tutorial_panel.tscn" id="12_h37ni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqtop"]
 content_margin_left = 5.0
@@ -99,7 +100,6 @@ root_node = NodePath("../HUDCanvas/HUD")
 process_callback = 0
 
 [node name="HUDCanvas" type="CanvasLayer" parent="."]
-layer = 2
 
 [node name="HUD" type="Control" parent="HUDCanvas"]
 layout_mode = 3
@@ -152,7 +152,24 @@ size_flags_vertical = 6
 texture = ExtResource("5_r1mb0")
 stretch_mode = 1
 
-[node name="TimerLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LabelContainer" type="HBoxContainer" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ProgressLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/LabelContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Found 0 of 0"
+label_settings = ExtResource("2_d3yd1")
+
+[node name="ProgressSeparator" type="VSeparator" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/LabelContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -176,34 +193,42 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InteractButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController" index="1"]
+[node name="InteractButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController/VirtualJoystick/ActionButton" index="0"]
 visible = false
-position = Vector2(521, 150)
 
-[node name="ProgressButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController" index="2"]
+[node name="ProgressButton" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController/VirtualJoystick/ActionButton" index="1"]
 visible = false
-position = Vector2(592, 81)
 
-[node name="PauseUI" parent="HUDCanvas" instance=ExtResource("5_2vh43")]
+[node name="ProgressHelper" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController/KeyboardHelper" index="0"]
+visible = false
+
+[node name="InteractionHelper" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController/KeyboardHelper" index="1"]
+visible = false
+position = Vector2(648, 75)
+
+[node name="GameOverUI" parent="HUDCanvas" instance=ExtResource("7_l7rfu")]
 visible = false
 
 [node name="GameClearUI" parent="HUDCanvas" instance=ExtResource("6_jogip")]
 visible = false
 
-[node name="GameOverUI" parent="HUDCanvas" instance=ExtResource("7_l7rfu")]
+[node name="PauseUI" parent="HUDCanvas" instance=ExtResource("5_2vh43")]
 visible = false
 
 [node name="ProgressPanel" parent="HUDCanvas" instance=ExtResource("10_hv5dv")]
 visible = false
 
-[node name="LearningPanel" parent="HUDCanvas" instance=ExtResource("11_3oy1x")]
+[node name="InformationPanel" parent="HUDCanvas" instance=ExtResource("11_3oy1x")]
 unique_name_in_owner = true
+visible = false
+
+[node name="TutorialPanel" parent="HUDCanvas" instance=ExtResource("12_h37ni")]
 visible = false
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_timeout"]
 [connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause"]
-[connection signal="restart_game" from="HUDCanvas/PauseUI" to="." method="_on_restart_game"]
 [connection signal="restart_game" from="HUDCanvas/GameOverUI" to="." method="_on_restart_game"]
+[connection signal="restart_game" from="HUDCanvas/PauseUI" to="." method="_on_restart_game"]
 [connection signal="learn" from="HUDCanvas/ProgressPanel" to="." method="_on_learn"]
 
 [editable path="HUDCanvas/HUD/MarginContainer/VBoxContainer/VirtualController"]
