@@ -8,10 +8,8 @@ signal exit_door_open()
 signal update_object_information(object_found: int, object_available: int)
 signal object_loaded()
 signal object_found(String)
-signal open_info_panel(title: String, info: String)
-signal toggle_info_panel(title: String, info: String)
-signal close_info_panel(title: String)
-signal panel_visibility_changed(bool)
+signal toggle_info_panel(title: String, content: String)
+signal panel_visibility_changed(String, bool)
 signal change_quest_time(time: int)
 
 var stage_data: StageData:

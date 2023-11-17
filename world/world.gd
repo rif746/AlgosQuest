@@ -18,6 +18,7 @@ signal stage_clear()
 
 func _ready():
 	initialize_object()
+	computer.window_close.connect(_on_computer_window_closed)
 
 
 func initialize_object():

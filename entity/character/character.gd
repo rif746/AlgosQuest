@@ -66,5 +66,5 @@ func _on_item_detector_body_exited(_body):
 	item_interaction.emit(false)
 
 
-func _on_panel_visibility_changed(visibility):
+func _on_panel_visibility_changed(_id, visibility):
 	interacted_with_item = visibility

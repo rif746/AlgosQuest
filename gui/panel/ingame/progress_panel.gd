@@ -42,4 +42,4 @@ func _on_close_button_pressed():
 
 
 func _on_visibility_changed():
-	StageManager.panel_visibility_changed.emit(visible)
+	StageManager.panel_visibility_changed.emit(null, visible)
