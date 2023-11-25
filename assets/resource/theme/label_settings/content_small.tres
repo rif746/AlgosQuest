@@ -1,3 +1,6 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://c5cu2jfhxu476"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c5cu2jfhxu476"]
+
+[ext_resource type="FontFile" uid="uid://dgdhqteg2aubu" path="res://assets/fonts/Metropolis/Metropolis-Regular.otf" id="1_2oju0"]
 
 [resource]
+font = ExtResource("1_2oju0")

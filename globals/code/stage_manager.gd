@@ -18,6 +18,8 @@ var stage_data: StageData:
 		question = new_stage_data.quest
 		is_tutorial_stage = new_stage_data.is_tutorial
 		stage_data = new_stage_data
+		for obj in object:
+			game_time += floor(obj.text.length() * .2)
 
 var object: Array[MaterialContent]
 var question: Array[Quest]
@@ -29,7 +31,8 @@ var life_count: int:
 		life_count = count
 var object_ready: bool:
 	set(loaded):
-		object_loaded.emit()
+		if loaded:
+			object_loaded.emit()
 		object_ready = loaded
 var object_count: int:
 	set(count):
@@ -38,7 +41,7 @@ var object_count: int:
 
 var object_found_count: int:
 	set(count):
-		if(count == object_count):
+		if(count == object_count && count != 0):
 			can_answer_question.emit()
 		update_object_information.emit(count, object_count)
 		object_found_count = count

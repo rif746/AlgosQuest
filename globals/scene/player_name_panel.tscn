@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy7htbyk7q3s7"]
+
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_xdaq3"]
+[ext_resource type="Script" path="res://globals/scene/player_name_panel.gd" id="2_bb58o"]
+[ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="3_bw1o6"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="4_w6eoe"]
+
+[node name="PlayerName" type="CanvasLayer"]
+script = ExtResource("2_bb58o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.305882, 0.454902, 1)
+
+[node name="PlayerNamePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.252778
+anchor_top = 0.1075
+anchor_right = 0.747222
+anchor_bottom = 0.8925
+offset_left = 37.9998
+offset_top = 72.0
+offset_right = -37.9998
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xdaq3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerNamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerNamePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PlayerNamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player Name"
+label_settings = ExtResource("3_bw1o6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="PlayerNamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Player Name"
+
+[node name="SaveButton" type="Button" parent="PlayerNamePanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Save"
+
+[node name="sfx_control" parent="." instance=ExtResource("4_w6eoe")]
+root_node = NodePath("../PlayerNamePanel")
+
+[connection signal="text_changed" from="PlayerNamePanel/MarginContainer/VBoxContainer/PlayerName" to="." method="_on_player_name_text_changed"]
+[connection signal="pressed" from="PlayerNamePanel/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

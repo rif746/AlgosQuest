@@ -5,7 +5,6 @@ extends StaticBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 func _ready():
-	question_panel.install_question(StageManager.question)
 	StageManager.can_answer_question.connect(_on_can_answer_question)
 
 func _on_can_answer_question():

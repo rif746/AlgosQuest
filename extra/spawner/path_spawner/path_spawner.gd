@@ -8,5 +8,5 @@ func spawn(scene: PackedScene):
 	path_follow.progress_ratio = randf()
 	var instantiated_scene = scene.instantiate()
 	get_parent().add_child(instantiated_scene)
-	instantiated_scene.position = path_follow.global_position
+	instantiated_scene.global_position = path_follow.global_position
 	return instantiated_scene

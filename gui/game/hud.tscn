@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvjyq06iqdqso"]
+[gd_scene load_steps=19 format=3 uid="uid://cvjyq06iqdqso"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_f423e"]
 [ext_resource type="LabelSettings" uid="uid://c5cu2jfhxu476" path="res://assets/resource/theme/label_settings/content_small.tres" id="2_d3yd1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cx54n5rmbbsff" path="res://gui/panel/ingame/progress_panel.tscn" id="10_hv5dv"]
 [ext_resource type="PackedScene" uid="uid://br3fx1tn404b1" path="res://gui/panel/information_panel/information_panel.tscn" id="11_3oy1x"]
 [ext_resource type="PackedScene" uid="uid://c74seqxlj4dhj" path="res://gui/panel/ingame/tutorial_panel.tscn" id="12_h37ni"]
+[ext_resource type="PackedScene" uid="uid://cnyxdi26j8go0" path="res://gui/panel/options_panel/options_panel.tscn" id="13_dmu51"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqtop"]
 content_margin_left = 5.0
@@ -186,7 +187,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_msi0d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wwwq5")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_j01uh")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pvgf4")
-text = "||"
+text = " || "
 
 [node name="VirtualController" parent="HUDCanvas/HUD/MarginContainer/VBoxContainer" instance=ExtResource("6_ewse6")]
 unique_name_in_owner = true
@@ -218,16 +219,25 @@ visible = false
 [node name="ProgressPanel" parent="HUDCanvas" instance=ExtResource("10_hv5dv")]
 visible = false
 
+[node name="TutorialPanel" parent="HUDCanvas" instance=ExtResource("12_h37ni")]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
 [node name="InformationPanel" parent="HUDCanvas" instance=ExtResource("11_3oy1x")]
 unique_name_in_owner = true
 visible = false
 
-[node name="TutorialPanel" parent="HUDCanvas" instance=ExtResource("12_h37ni")]
+[node name="OptionsPanel" parent="HUDCanvas" instance=ExtResource("13_dmu51")]
+unique_name_in_owner = true
+process_mode = 2
 visible = false
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_timeout"]
 [connection signal="pressed" from="HUDCanvas/HUD/MarginContainer/VBoxContainer/HBoxContainer/PauseButton" to="." method="_on_pause"]
 [connection signal="restart_game" from="HUDCanvas/GameOverUI" to="." method="_on_restart_game"]
+[connection signal="open_guide_panel" from="HUDCanvas/PauseUI" to="." method="_on_pause_ui_open_guide_panel"]
+[connection signal="open_option_panel" from="HUDCanvas/PauseUI" to="." method="_on_pause_ui_open_option_panel"]
 [connection signal="restart_game" from="HUDCanvas/PauseUI" to="." method="_on_restart_game"]
 [connection signal="learn" from="HUDCanvas/ProgressPanel" to="." method="_on_learn"]
 

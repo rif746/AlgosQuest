@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://den0e6u2x6kxs"]
+[gd_scene load_steps=8 format=3 uid="uid://den0e6u2x6kxs"]
 
 [ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_xe156"]
 [ext_resource type="Script" path="res://gui/menu/main_menu.gd" id="2_xlw62"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://copo5fl0caijp" path="res://assets/resource/theme/label_settings/title_large.tres" id="4_0yypb"]
 [ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="5_clfkx"]
 [ext_resource type="PackedScene" uid="uid://doxjpugincw3m" path="res://gui/panel/about_panel/about_panel.tscn" id="6_jtf5q"]
+[ext_resource type="PackedScene" uid="uid://cnyxdi26j8go0" path="res://gui/panel/options_panel/options_panel.tscn" id="7_bc70g"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -41,15 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_vmtnw")
 
-[node name="AboutButton" type="Button" parent="Panel"]
-layout_mode = 2
-offset_left = 432.0
-offset_top = 281.0
-offset_right = 489.0
-offset_bottom = 343.0
-theme_override_font_sizes/font_size = 24
-text = "i"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -57,10 +49,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-text = "The Lost Key"
+text = "ALGOS QUEST"
 label_settings = ExtResource("4_0yypb")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -83,6 +76,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Option"
 
+[node name="AboutButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Credit"
+
 [node name="ExitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
@@ -93,10 +91,16 @@ text = "Exit"
 root_node = NodePath("../Panel")
 
 [node name="AboutPanel" parent="." instance=ExtResource("6_jtf5q")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="Panel/AboutButton" to="." method="_on_about_button_pressed"]
+[node name="OptionsPanel" parent="." instance=ExtResource("7_bc70g")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

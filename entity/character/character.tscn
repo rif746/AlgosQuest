@@ -280,8 +280,5 @@ parameters/conditions/is_walking = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
-
 [connection signal="body_entered" from="ItemDetector" to="." method="_on_item_detector_body_entered"]
 [connection signal="body_exited" from="ItemDetector" to="." method="_on_item_detector_body_exited"]

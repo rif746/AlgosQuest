@@ -3,9 +3,6 @@ class_name Computer
 
 var stage_data: StageData
 
-signal window_close()
-
-
 func _ready():
 	stage_data = StageManager.stage_data
 	StageManager.panel_visibility_changed.connect(_on_close_info_panel)
@@ -24,6 +21,5 @@ func interaction():
 
 
 func _on_close_info_panel(_id, _visible):
-	if(_id == stage_data.title):
-		window_close.emit()
+	if(_id == stage_data.title && !_visible):
 		StageManager.object_ready = true

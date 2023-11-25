@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="The Lost Key"
+config/name="Algos Quest"
 run/main_scene="res://gui/menu/main_menu.tscn"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
@@ -26,6 +26,7 @@ BGMAudioStream="*res://globals/scene/bgm_audio_stream.tscn"
 SceneChanger="*res://globals/scene/scene_changer.tscn"
 StageLoader="*res://globals/code/stage_loader.gd"
 StageManager="*res://globals/code/stage_manager.gd"
+PlayerNamePanel="*res://globals/scene/player_name_panel.tscn"
 
 [debug]
 
@@ -48,6 +49,10 @@ ui_accept={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194310,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxmy4bjdgjul"]
+[gd_scene load_steps=23 format=3 uid="uid://dxmy4bjdgjul"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_6wn2q"]
 [ext_resource type="TileSet" uid="uid://c4thuegftfdu7" path="res://assets/resource/tileset/scifi.tres" id="2_2rt8k"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bd0puybf4ybmx" path="res://entity/object/computer/computer.tscn" id="6_bska8"]
 [ext_resource type="PackedScene" uid="uid://hiog0h4ex0lb" path="res://entity/portal/portal.tscn" id="7_0pw5q"]
 [ext_resource type="PackedScene" uid="uid://dppydbmfly7xy" path="res://entity/object/terminal/quest_terminal.tscn" id="9_xoxcy"]
+[ext_resource type="Texture2D" uid="uid://dcahj54tem85s" path="res://assets/sprites/lights.png" id="10_j8i7t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o63k4"]
+light_mode = 2
 
 [sub_resource type="Curve2D" id="Curve2D_alg6d"]
 _data = {
@@ -76,18 +80,22 @@ _data = {
 }
 point_count = 9
 
-[node name="TutorialStage" type="Node2D" node_paths=PackedStringArray("character_spawner", "object_spawner", "entrance_door", "exit_door", "computer", "portal", "top_left_camera_limit", "bottom_right_camera_limit")]
+[node name="TutorialStage" type="Node2D" node_paths=PackedStringArray("tilemap", "light", "character_spawner", "object_spawner", "entrance_door", "exit_door", "computer", "portal", "top_left_camera_limit", "bottom_right_camera_limit", "canvas_modulate")]
+material = SubResource("CanvasItemMaterial_o63k4")
 script = ExtResource("1_6wn2q")
 character = ExtResource("2_mq8gy")
+tilemap = NodePath("TileMap")
+light = NodePath("ExitDoorLight")
 character_spawner = NodePath("CharacterSpawner")
 object_spawner = NodePath("ObjectSpawner")
 entrance_door = NodePath("EntranceDoor")
 exit_door = NodePath("ExitDoor")
 computer = NodePath("Computer")
 portal = NodePath("Portal")
-stage_time = 480
+use_light = true
 top_left_camera_limit = NodePath("TopLeft")
 bottom_right_camera_limit = NodePath("BottomRight")
+canvas_modulate = NodePath("CanvasModulate")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(27, 0)
@@ -154,3 +162,15 @@ position = Vector2(755, 366)
 
 [node name="QuestTerminal" parent="." instance=ExtResource("9_xoxcy")]
 position = Vector2(483, -88)
+
+[node name="ExitDoorLight" type="PointLight2D" parent="."]
+position = Vector2(475, -65)
+scale = Vector2(0.181641, 0.160156)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 2
+texture = ExtResource("10_j8i7t")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)

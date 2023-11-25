@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk1x6bbfh44om"]
 
-[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_60hfx"]
-[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_7gcpb"]
-[ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="3_wnjur"]
+[ext_resource type="Theme" uid="uid://bfqvhpwoqicre" path="res://assets/resource/theme/main_theme.tres" id="1_vxpux"]
+[ext_resource type="LabelSettings" uid="uid://cb0rud65sjfwa" path="res://assets/resource/theme/label_settings/title_small.tres" id="2_h0h0b"]
+[ext_resource type="PackedScene" uid="uid://bwweoq10c48qi" path="res://extra/sfx/sfx_control.tscn" id="3_2qlrh"]
 
 [sub_resource type="GDScript" id="GDScript_pythp"]
 script/source = "extends Control
@@ -63,7 +63,7 @@ offset_right = 308.0
 offset_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_60hfx")
+theme = ExtResource("1_vxpux")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
@@ -83,7 +83,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 text = "Title"
-label_settings = ExtResource("3_wnjur")
+label_settings = ExtResource("2_h0h0b")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -104,7 +104,7 @@ offset_bottom = 36.0
 theme_override_font_sizes/font_size = 24
 text = "x"
 
-[node name="sfx_control" parent="." instance=ExtResource("3_7gcpb")]
+[node name="sfx_control" parent="." instance=ExtResource("3_2qlrh")]
 root_node = NodePath("../Panel")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

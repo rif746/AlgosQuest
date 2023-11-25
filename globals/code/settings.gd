@@ -26,7 +26,7 @@ var bgm = 100
 var sfx = 100
 
 # player name
-var userName = "Player"
+var userName = null
 
 func _ready():
 	load_setting()

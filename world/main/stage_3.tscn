@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://blkrsdn27h6e2"]
+[gd_scene load_steps=32 format=3 uid="uid://blkrsdn27h6e2"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_ni78r"]
 [ext_resource type="PackedScene" uid="uid://dk8h8h6yjxppp" path="res://entity/character/character.tscn" id="2_uju7q"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hiog0h4ex0lb" path="res://entity/portal/portal.tscn" id="7_hleim"]
 [ext_resource type="PackedScene" uid="uid://bn4dhx2mhud5" path="res://entity/door/door.tscn" id="8_76kvk"]
 [ext_resource type="PackedScene" uid="uid://dppydbmfly7xy" path="res://entity/object/terminal/quest_terminal.tscn" id="9_rvgr2"]
+[ext_resource type="Texture2D" uid="uid://dcahj54tem85s" path="res://assets/sprites/lights.png" id="10_xxq0k"]
 
 [sub_resource type="Curve2D" id="Curve2D_eytvv"]
 _data = {
@@ -136,16 +137,16 @@ _data = {
 }
 point_count = 7
 
-[node name="Stage3" type="Node" node_paths=PackedStringArray("character_spawner", "object_spawner", "entrance_door", "exit_door", "computer", "portal", "top_left_camera_limit", "bottom_right_camera_limit")]
+[node name="Stage3" type="Node" node_paths=PackedStringArray("tilemap", "character_spawner", "object_spawner", "entrance_door", "exit_door", "computer", "portal", "top_left_camera_limit", "bottom_right_camera_limit")]
 script = ExtResource("1_ni78r")
 character = ExtResource("2_uju7q")
+tilemap = NodePath("TileMap")
 character_spawner = NodePath("CharacterSpawner")
 object_spawner = NodePath("ObjectSpawner")
 entrance_door = NodePath("EntranceDoor")
 exit_door = NodePath("ExitDoor")
 computer = NodePath("Computer")
 portal = NodePath("Portal")
-stage_time = 500
 top_left_camera_limit = NodePath("TopLeft")
 bottom_right_camera_limit = NodePath("BottomRight")
 
@@ -242,3 +243,11 @@ scale = Vector2(2, 1)
 
 [node name="QuestTerminal" parent="." instance=ExtResource("9_rvgr2")]
 position = Vector2(248, -298)
+
+[node name="ExitDoorLight" type="PointLight2D" parent="."]
+position = Vector2(230, -272)
+scale = Vector2(0.164062, 0.144657)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 2
+texture = ExtResource("10_xxq0k")

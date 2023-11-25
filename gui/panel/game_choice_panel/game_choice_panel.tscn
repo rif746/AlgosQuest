@@ -32,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -215.0
-offset_top = -105.0
-offset_right = 215.0
-offset_bottom = 105.0
+offset_left = -154.0
+offset_top = -55.0
+offset_right = 154.0
+offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -61,6 +61,7 @@ text = "???"
 label_settings = ExtResource("3_cohno")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -70,22 +71,22 @@ theme_override_constants/separation = 15
 
 [node name="PlayButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 text = "Play"
 
 [node name="ReadButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 75)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 text = "Read"
 
 [node name="CloseButton" type="Button" parent="Panel"]
 layout_mode = 2
-offset_left = 421.0
-offset_top = -5.0
-offset_right = 478.0
-offset_bottom = 57.0
+offset_left = 279.0
+offset_top = -25.0
+offset_right = 332.0
+offset_bottom = 28.0
 theme_override_font_sizes/font_size = 24
 text = "x"
 

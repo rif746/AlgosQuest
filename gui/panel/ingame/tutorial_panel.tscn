@@ -7,6 +7,23 @@
 [sub_resource type="GDScript" id="GDScript_yejna"]
 script/source = "extends Control
 
+@onready var guide_label = %GuideLabel
+
+func _ready():
+	var guide: String = \"[ul]\\n\"
+	if DisplayServer.is_touchscreen_available():
+		guide += \"Gunakan tombol analog untuk menggerakkan karakter.\\n\"
+		guide += \"Gunakan tombol [img=36]res://assets/sprites/controller/button_progress_normal.png[/img] untuk membuka progres permainan.\\n\"
+		guide += \"Gunakan tombol [img=36]res://assets/sprites/controller/button_normal.png[/img] untuk berinteraksi dengan objek.\\n\"
+	else:
+		guide += \"Gunakan tombol <panah> untuk menjalankan karakter.\\n\"
+		guide += \"Gunakan tombol <spasi> untuk membuka menu progress.\\n\"
+		guide += \"Gunakan tombol <enter> untuk berinteraksi dengan objek.\\n\"
+	
+	guide += \"Panduan ini dapat diakses kembali dari menu [i]pause[/i].\"
+	guide += \"[/ul]\\n\"
+	guide_label.append_text(guide)
+
 
 func _on_close_button_pressed():
 	hide()
@@ -41,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -286.0
-offset_top = -161.0
-offset_right = 286.0
-offset_bottom = 161.0
+offset_left = -176.0
+offset_top = -145.0
+offset_right = 176.0
+offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h7qht")
@@ -78,14 +95,10 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer/Panel"]
+[node name="GuideLabel" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
-text = "[ul]
-Untuk menjalankan karakter, gunakan analog atau tombol <panah> jika menggunakan keyboard.
-untuk membuka menu progress gunakan tombol [img=36]res://assets/sprites/controller/button_progress_normal.png[/img] atau tombol <spasi>
-untuk berinteraksi dengan objek gunakan tombol [img=36]res://assets/sprites/controller/button_normal.png[/img] atau tombol <enter>
-[/ul]"
 tab_size = 3
 
 [node name="CloseButton" type="Button" parent="Panel/VBoxContainer"]

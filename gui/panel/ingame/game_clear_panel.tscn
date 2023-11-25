@@ -32,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = -122.0
-offset_right = 159.0
-offset_bottom = 122.0
+offset_left = -96.0
+offset_top = -108.0
+offset_right = 96.0
+offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -47,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
+alignment = 1
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -57,8 +58,9 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="BackToMenuButton" type="Button" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(200, 75)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+size_flags_vertical = 8
 text = "Back to Stage Menu"
 
 [node name="sfx_control" parent="." instance=ExtResource("4_5ac5i")]

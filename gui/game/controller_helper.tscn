@@ -88,6 +88,7 @@ action = "ui_select"
 visibility_mode = 1
 
 [node name="KeyboardHelper" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://d3mi4enfyeht7"
-path="res://.godot/imported/FiraCode-Regular.ttf-e4f8ed682e3900686172fbffb0e825d3.fontdata"
+uid="uid://cbpoaatk6vd0k"
+path="res://.godot/imported/Metropolis-SemiBoldItalic.otf-55e36a3fa45554c6def9ed4531095b40.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/FiraCode-Regular.ttf"
-dest_files=["res://.godot/imported/FiraCode-Regular.ttf-e4f8ed682e3900686172fbffb0e825d3.fontdata"]
+source_file="res://assets/fonts/Metropolis/Metropolis-SemiBoldItalic.otf"
+dest_files=["res://.godot/imported/Metropolis-SemiBoldItalic.otf-55e36a3fa45554c6def9ed4531095b40.fontdata"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c5kl8n450spot"
-path="res://.godot/imported/joystix monospace.otf-0ac56a5719df937d9cd7fc63aaacb0e9.fontdata"
+uid="uid://dgdhqteg2aubu"
+path="res://.godot/imported/Metropolis-Regular.otf-2dd358c73009f297eb198cfce253141d.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/joystix monospace.otf"
-dest_files=["res://.godot/imported/joystix monospace.otf-0ac56a5719df937d9cd7fc63aaacb0e9.fontdata"]
+source_file="res://assets/fonts/Metropolis/Metropolis-Regular.otf"
+dest_files=["res://.godot/imported/Metropolis-Regular.otf-2dd358c73009f297eb198cfce253141d.fontdata"]
 
 [params]
 

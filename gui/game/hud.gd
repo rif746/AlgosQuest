@@ -9,10 +9,12 @@ class_name HUDControl
 @onready var game_clear_ui = $HUDCanvas/GameClearUI
 @onready var progress_panel = $HUDCanvas/ProgressPanel
 @onready var virtual_controller = %VirtualController
-@onready var tutorial_panel = $HUDCanvas/TutorialPanel
 @onready var information_panel = %InformationPanel
 @onready var progress_label = %ProgressLabel
 @onready var progress_separator = %ProgressSeparator
+@onready var tutorial_panel = %TutorialPanel
+@onready var options_panel = %OptionsPanel
+@onready var hud = $HUDCanvas/HUD
 
 var current_stage: World
 
@@ -35,9 +37,10 @@ func _process(_delta):
 
 func load_stage():
 	randomize()
-	
 	# unload stage if game restarted
 	if (current_stage is World):
+		current_stage.canvas_modulate.queue_free()
+		remove_child(current_stage)
 		current_stage.queue_free()
 	
 	if (StageManager.is_tutorial_stage):
@@ -48,6 +51,7 @@ func load_stage():
 	
 	current_stage.item_interaction.connect(virtual_controller.toggle_interact_button)
 	current_stage.stage_clear.connect(_on_stage_cleared)
+	current_stage.toggle_hud.connect(_on_toggle_hud)
 	if !StageManager.object_loaded.is_connected(_on_object_loaded):
 		StageManager.object_loaded.connect(_on_object_loaded)
 	if !StageManager.game_over.is_connected(_on_timeout):
@@ -61,11 +65,11 @@ func load_stage():
 	
 	add_child(current_stage)
 
-	tutorial_panel.visible = StageManager.is_tutorial_stage
-	
 	# start game timer
-	stage_timer.set_wait_time(current_stage.stage_time)
+	stage_timer.set_wait_time(StageManager.game_time)
 	stage_timer.start()
+	
+	tutorial_panel.visible = StageManager.is_tutorial_stage
 
 
 func get_random_world_file():
@@ -107,6 +111,10 @@ func _on_pause(node = pause_ui):
 func _on_restart_game():
 	load_stage()
 
+func _on_toggle_hud(_toggle):
+	print(_toggle)
+	hud.visible = _toggle
+
 
 func _on_learn(title, content):
 	information_panel.visible = !information_panel.visible
@@ -118,6 +126,14 @@ func _on_object_loaded():
 
 
 func _on_update_object_information(found: int, available: int):
-	progress_separator.show()
-	progress_label.show()
+	progress_separator.visible = available > 0
+	progress_label.visible = available > 0
 	progress_label.set_text("Object %d of %d" % [found, available])
+
+
+func _on_pause_ui_open_option_panel():
+	options_panel.show()
+
+
+func _on_pause_ui_open_guide_panel():
+	tutorial_panel.show()

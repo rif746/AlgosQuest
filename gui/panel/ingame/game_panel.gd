@@ -1,6 +1,8 @@
 extends Control
 
 signal restart_game()
+signal open_option_panel()
+signal open_guide_panel()
 
 func _on_retry_button_pressed():
 	SceneChanger.resume_game(self)
@@ -16,3 +18,11 @@ func _on_back_to_menu_button_pressed():
 
 func _on_resume_button_pressed():
 	SceneChanger.resume_game(self)
+
+
+func _on_options_button_pressed():
+	open_option_panel.emit()
+
+
+func _on_guide_button_pressed():
+	open_guide_panel.emit()

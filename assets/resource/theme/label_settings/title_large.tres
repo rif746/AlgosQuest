@@ -1,7 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://copo5fl0caijp"]
 
-[ext_resource type="FontFile" uid="uid://c5kl8n450spot" path="res://assets/fonts/joystix monospace.otf" id="1_yjr4g"]
+[ext_resource type="FontFile" uid="uid://pflkgllwxkiv" path="res://assets/fonts/montserrat/Montserrat-Black.otf" id="1_1ddjb"]
 
 [resource]
-font = ExtResource("1_yjr4g")
+font = ExtResource("1_1ddjb")
 font_size = 52

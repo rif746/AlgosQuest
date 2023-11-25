@@ -1,7 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cxeym524iwyrf"]
 
-[ext_resource type="FontFile" uid="uid://c5kl8n450spot" path="res://assets/fonts/joystix monospace.otf" id="1_4xlwy"]
+[ext_resource type="FontFile" uid="uid://c7nts2haf0wkp" path="res://assets/fonts/Metropolis/Metropolis-Bold.otf" id="1_iebvt"]
 
 [resource]
-font = ExtResource("1_4xlwy")
+font = ExtResource("1_iebvt")
 font_size = 48
